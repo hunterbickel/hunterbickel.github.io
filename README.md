@@ -104,3 +104,18 @@ The `id` is derived from the title, and it is also the permalink anchor (`writin
 Supported Markdown: blank-line paragraphs, `## heading`, `> quote`, `- list`, `1. list`,
 `---` rule, `**bold**`, `*italic*`, `` `code` ``, `[link](url)`. Entry text is HTML-escaped
 before formatting and link schemes are restricted, so the feed can't be injected into.
+
+## Favicon
+
+Generated from `source-photo.png` by `tools/make_favicons.py` (pure stdlib — no Pillow or
+ImageMagick needed). It finds the face, crops a square around it, applies a feathered
+circular mask, and writes `assets/icons/` plus a root `favicon.ico`.
+
+To change the photo: drop a new `source-photo.png` in the repo root and run
+
+```bash
+python3 tools/make_favicons.py
+```
+
+A larger source image gives sharper 180px and 512px icons; the 16/32px tab icons are
+downscaled either way.
