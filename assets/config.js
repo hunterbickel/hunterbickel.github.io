@@ -18,8 +18,8 @@ window.SITE_CONFIG = {
      Used by admin.html to commit new entries straight to
      data/journal.json through the GitHub API.
      Fill these in after the repo exists.                            */
-  repoOwner:  "",                // e.g. "hunterbickel"
-  repoName:   "",                // e.g. "personal-website"
+  repoOwner:  "hunterbickel",
+  repoName:   "hunterbickel.github.io",
   repoBranch: "main",
   journalPath: "data/journal.json"
 };
