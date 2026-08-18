@@ -112,6 +112,36 @@ main { padding-bottom: 5rem; }
 .nav a:hover { color: var(--ink); }
 .nav a[aria-current="page"] { color: var(--ink); border-bottom-color: var(--accent); }
 
+/* ---------- under-construction notice ---------- */
+
+.construction {
+  background: var(--paper-2);
+  border-bottom: 1px solid var(--rule);
+}
+.construction__inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.45rem 0.75rem;
+  padding-top: 0.7rem;
+  padding-bottom: 0.7rem;
+  font-family: var(--sans);
+  font-size: 0.85rem;
+  line-height: 1.45;
+  color: var(--ink-soft);
+}
+.construction__tag {
+  font-size: 0.66rem;
+  font-weight: 600;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+  color: var(--accent);
+  border: 1px solid var(--accent-dim);
+  border-radius: 2px;
+  padding: 0.14rem 0.45rem;
+  white-space: nowrap;
+}
+
 /* ---------- page head ---------- */
 
 .page-head { padding: 3.2rem 0 2.2rem; }
