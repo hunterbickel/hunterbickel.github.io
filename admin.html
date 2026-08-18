@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>New Journal Entry — Hunter Bickel</title>
+<link rel="stylesheet" href="assets/style.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><text y='13' font-size='13'>✍️</text></svg>">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="masthead">
+  <div class="wrap masthead__inner">
+    <p class="masthead__name"><a href="index.html">Hunter Bickel</a></p>
+    <nav class="nav" aria-label="Primary">
+      <a href="writing.html">View journal</a>
+      <a href="admin.html" aria-current="page">New entry</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+  <div class="wrap">
+
+    <div class="page-head">
+      <h1>New journal entry</h1>
+      <p class="dek">
+        Write, preview, publish. Publishing commits the entry straight to
+        <code>data/journal.json</code>; the public feed picks it up on the next page load.
+      </p>
+    </div>
+
+    <!-- ---------- connection ---------- -->
+    <section aria-labelledby="conn-h">
+      <h2 class="section-label" id="conn-h">Connection</h2>
+
+      <div class="form">
+        <div class="field">
+          <label for="ad-token">GitHub token</label>
+          <input type="password" id="ad-token" autocomplete="off" spellcheck="false"
+                 placeholder="github_pat_…">
+          <p class="hint">
+            A <strong>fine-grained personal access token</strong>, scoped to this repository
+            only, with <strong>Contents: Read and write</strong> — nothing else. It is stored
+            in this browser's local storage and sent only to api.github.com. It is never
+            committed to the repo. On a shared machine, use <em>Forget token</em> when done.
+          </p>
+        </div>
+        <div class="btn-row">
+          <button class="btn btn--ghost" type="button" id="ad-save-token">Remember token</button>
+          <button class="btn btn--ghost" type="button" id="ad-forget-token">Forget token</button>
+          <span class="hint" id="ad-conn" style="font-family:var(--sans)"></span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ---------- entry ---------- -->
+    <section aria-labelledby="entry-h" style="margin-top:3rem">
+      <h2 class="section-label" id="entry-h">Entry</h2>
+
+      <form class="form" id="entry-form" novalidate>
+        <div class="field">
+          <label for="ad-title">Title</label>
+          <input type="text" id="ad-title" required>
+        </div>
+
+        <div class="field">
+          <label for="ad-date">Date</label>
+          <input type="date" id="ad-date" required>
+        </div>
+
+        <div class="field">
+          <label for="ad-tags">Tags</label>
+          <input type="text" id="ad-tags" placeholder="High-speed rail, Station design">
+          <p class="hint">Comma-separated. Leave blank for none.</p>
+        </div>
+
+        <div class="field">
+          <label for="ad-body">Body</label>
+          <textarea id="ad-body" rows="18" required
+            placeholder="Markdown subset: blank line between paragraphs, ## heading, &gt; quote, - list, **bold**, *italic*, `code`, [link](url), --- rule."></textarea>
+        </div>
+
+        <div class="field">
+          <label style="display:flex;align-items:center;gap:0.5rem;text-transform:none;letter-spacing:0;font-size:0.9rem">
+            <input type="checkbox" id="ad-draft" style="width:auto;margin:0">
+            Save as draft (kept in the file, hidden from the public feed)
+          </label>
+        </div>
+
+        <div class="btn-row">
+          <button class="btn" type="submit" id="ad-publish">Publish entry</button>
+          <button class="btn btn--ghost" type="button" id="ad-preview-btn">Preview</button>
+          <button class="btn btn--ghost" type="button" id="ad-copy">Copy JSON instead</button>
+        </div>
+
+        <p class="form-status" id="ad-status" hidden></p>
+      </form>
+    </section>
+
+    <!-- ---------- preview ---------- -->
+    <section aria-labelledby="prev-h" id="ad-preview-wrap" style="margin-top:3rem" hidden>
+      <h2 class="section-label" id="prev-h">Preview</h2>
+      <div class="journal" id="ad-preview"></div>
+    </section>
+
+  </div>
+</main>
+
+<footer class="footer">
+  <div class="wrap footer__inner">
+    <span>Admin page — not linked from the public site.</span>
+    <span class="spacer"></span>
+    <a href="writing.html">Research &amp; Writing</a>
+  </div>
+</footer>
+
+<script src="assets/config.js"></script>
+<script src="assets/site.js"></script>
+<script src="assets/markdown.js"></script>
+<script src="assets/admin.js"></script>
+</body>
+</html>
