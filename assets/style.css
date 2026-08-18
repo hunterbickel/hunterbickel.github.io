@@ -270,6 +270,13 @@ a:hover { color: var(--link-hover); border-bottom-color: var(--link-hover); }
   margin: 0.2rem 0 0.6rem;
 }
 .entry__org .sep { color: var(--rule); padding: 0 0.45rem; }
+.entry__note {
+  margin: 0;
+  font-size: 0.97rem;
+  line-height: 1.55;
+  color: var(--ink-soft);
+}
+
 .entry ul { margin: 0; padding-left: 1.2rem; font-size: 0.97rem; }
 .entry li { margin-bottom: 0.35rem; color: var(--ink-soft); }
 
