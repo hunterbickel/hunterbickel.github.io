@@ -1,54 +1,44 @@
 /* ---------------------------------------------------------------
    Hunter Bickel — personal site
    Zero-dependency stylesheet. No external fonts or assets.
+
+   Palette lifted from htbickel.squarespace.com:
+     --navy  #113c60  siteBackgroundColor / "black"
+     --blue  #1470af  darkAccent  (buttons, active states)
+     --grey  #697178  accent      (strokes, secondary on light fills)
+     --light #eaeaee  lightAccent (form/panel fills)
+     white   #ffffff  body text and links
+
+   Links are white with an underline, matching the Squarespace site:
+   #1470af on #113c60 is only 2.15:1, far below the 4.5:1 needed for
+   body text, so the accent is used for buttons and rules instead.
    --------------------------------------------------------------- */
 
 :root {
-  --paper:      #fcfbf7;
-  --paper-2:    #f4f2ec;
-  --ink:        #1c1c19;
-  --ink-soft:   #3f3f39;
-  --muted:      #74736a;
-  --rule:       #e2e0d7;
-  --rule-soft:  #ecebe4;
-  --accent:     #a3452c;
-  --accent-dim: #c46a4e;
-  --focus:      #2f6f9f;
+  /* exact values from the Squarespace theme */
+  --navy:   #113c60;
+  --blue:   #1470af;
+  --grey:   #697178;
+  --light:  #eaeaee;
 
-  --serif: "Iowan Old Style", "Palatino Linotype", Palatino, "Book Antiqua", Georgia, serif;
+  /* roles */
+  --paper:      var(--navy);
+  --paper-2:    #16476f;
+  --ink:        #ffffff;
+  --ink-soft:   rgba(255,255,255,0.84);
+  --muted:      rgba(255,255,255,0.62);
+  --rule:       rgba(255,255,255,0.20);
+  --rule-soft:  rgba(255,255,255,0.10);
+  --accent:     #7cc0ef;
+  --accent-dim: var(--blue);
+  --focus:      #9ad2f7;
+
+  --serif: "PT Serif", "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
   --sans:  -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   --mono:  ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
 
-  --measure: 34rem;   /* reading column  */
-  --wide:    52rem;   /* listing column  */
-}
-
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) {
-    --paper:      #15161a;
-    --paper-2:    #1d1f24;
-    --ink:        #e9e7e0;
-    --ink-soft:   #cfccc3;
-    --muted:      #8f8d84;
-    --rule:       #2e3037;
-    --rule-soft:  #24262c;
-    --accent:     #e08a68;
-    --accent-dim: #b9694b;
-    --focus:      #6fa8d6;
-  }
-}
-
-:root[data-theme="dark"] {
-  --paper:      #15161a;
-  --paper-2:    #1d1f24;
-  --ink:        #e9e7e0;
-  --ink-soft:   #cfccc3;
-  --muted:      #8f8d84;
-  --rule:       #2e3037;
-  --rule-soft:  #24262c;
-  --accent:     #e08a68;
-  --accent-dim: #b9694b;
-  --focus:      #6fa8d6;
+  --measure: 34rem;
+  --wide:    52rem;
 }
 
 *, *::before, *::after { box-sizing: border-box; }
@@ -173,8 +163,8 @@ h3 { font-size: 1.08rem; font-weight: 600; margin: 2rem 0 0.5rem; }
 
 p { margin: 0 0 1.15rem; }
 
-a { color: var(--accent); text-decoration: none; border-bottom: 1px solid var(--rule); }
-a:hover { border-bottom-color: var(--accent); }
+a { color: var(--ink); text-decoration: none; border-bottom: 1px solid rgba(255,255,255,0.45); }
+a:hover { color: var(--accent); border-bottom-color: var(--accent); }
 
 :focus-visible { outline: 2px solid var(--focus); outline-offset: 3px; border-radius: 2px; }
 
@@ -213,6 +203,25 @@ a:hover { border-bottom-color: var(--accent); }
   color: var(--ink-soft);
 }
 .placeholder strong { color: var(--accent); }
+
+/* ---------- figures ---------- */
+
+.prose figure, .post__body figure { margin: 2rem 0; }
+.prose figure img, .post__body figure img,
+.prose > img, .post__body > img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 3px;
+  background: var(--paper-2);
+}
+.prose figcaption, .post__body figcaption {
+  font-family: var(--sans);
+  font-size: 0.8rem;
+  line-height: 1.45;
+  color: var(--muted);
+  margin-top: 0.5rem;
+}
 
 /* ---------- CV / résumé entries ---------- */
 
@@ -332,14 +341,14 @@ a:hover { border-bottom-color: var(--accent); }
   font-family: var(--sans);
   font-size: 0.97rem;
   line-height: 1.5;
-  color: var(--ink);
-  background: var(--paper-2);
+  color: var(--navy);
+  background: var(--light);
   border: 1px solid var(--rule);
   border-radius: 3px;
   padding: 0.6rem 0.7rem;
 }
 .field textarea { resize: vertical; min-height: 9rem; font-family: var(--mono); font-size: 0.88rem; }
-.field input:focus, .field textarea:focus { border-color: var(--accent); }
+.field input:focus, .field textarea:focus { border-color: var(--blue); outline: 2px solid var(--focus); outline-offset: 1px; }
 .field .hint {
   font-family: var(--sans);
   font-size: 0.78rem;
@@ -355,16 +364,16 @@ a:hover { border-bottom-color: var(--accent); }
   font-size: 0.85rem;
   font-weight: 600;
   letter-spacing: 0.05em;
-  color: var(--paper);
-  background: var(--accent);
-  border: 1px solid var(--accent);
+  color: #ffffff;
+  background: var(--blue);
+  border: 1px solid var(--blue);
   border-radius: 3px;
   padding: 0.6rem 1.35rem;
   cursor: pointer;
 }
-.btn:hover { background: var(--accent-dim); border-color: var(--accent-dim); }
+.btn:hover { background: #1a83c9; border-color: #1a83c9; }
 .btn[disabled] { opacity: 0.5; cursor: not-allowed; }
-.btn--ghost { background: transparent; color: var(--accent); }
+.btn--ghost { background: transparent; color: var(--ink); border-color: var(--rule); }
 .btn--ghost:hover { background: var(--paper-2); color: var(--accent); }
 
 .btn-row { display: flex; flex-wrap: wrap; gap: 0.7rem; align-items: center; }

@@ -30,6 +30,10 @@ window.renderMarkdown = (function () {
   /* Inline formatting. Input is already escaped. */
   function inline(text) {
     return text
+      .replace(/!\[([^\]]*)\]\(([^)\s]+)\)/g, function (_, alt, src) {
+        return '<img src="' + safeUrl(src) + '" alt="' + alt +
+               '" loading="lazy" decoding="async">';
+      })
       .replace(/`([^`]+)`/g, function (_, c) {
         return '<code>' + c + '</code>';
       })
@@ -55,6 +59,32 @@ window.renderMarkdown = (function () {
       if (!b) return;
 
       if (/^---+$/.test(b)) { out.push("<hr>"); return; }
+
+      /* an image block: one ![](src) line, then optional caption lines.
+         Captions run through inline() so links inside them survive. */
+      if (/^!\[[^\]]*\]\([^)\s]+\)/.test(b)) {
+        var lines = b.split("\n");
+        var html2 = [];
+        var pending = null;
+        var flush = function () {
+          if (!pending) return;
+          html2.push('<figure><img src="' + pending.src + '" alt="' + pending.alt +
+                     '" loading="lazy" decoding="async">' +
+                     (pending.cap.length
+                        ? '<figcaption>' + inline(pending.cap.join(" ")) + '</figcaption>'
+                        : '') +
+                     '</figure>');
+          pending = null;
+        };
+        lines.forEach(function (ln) {
+          var m = /^!\[([^\]]*)\]\(([^)\s]+)\)\s*$/.exec(ln.trim());
+          if (m) { flush(); pending = { alt: m[1], src: safeUrl(m[2]), cap: [] }; }
+          else if (pending && ln.trim()) { pending.cap.push(ln.trim()); }
+        });
+        flush();
+        out.push(html2.join(""));
+        return;
+      }
 
       if (/^##\s+/.test(b)) {
         out.push("<h3>" + inline(b.replace(/^##\s+/, "")) + "</h3>");

@@ -33,10 +33,15 @@ def cutout(tol):
     return a
 
 # ---- square crop around the face, then resample ----
-def sample(px_, alpha, size, circular):
+def sample(px_, alpha, size, circular, tight=True):
     side = min(w,h)
-    x0 = max(0, min(w-side, int(cx - side/2)))
-    y0 = max(0, min(h-side, int(cy - side/2)))
+    if tight:
+        x0 = max(0, min(w-side, int(cx - side/2)))
+        y0 = max(0, min(h-side, int(cy - side/2)))
+    else:
+        # Squarespace framing: whole photo, centred, background kept
+        x0 = max(0, (w-side)//2)
+        y0 = max(0, (h-side)//2)
     out = bytearray(size*size*4)
     sc = side/size
     r  = size/2 - 0.5
@@ -67,9 +72,28 @@ cleared = sum(1 for v in alpha if v==0)
 print("flood-fill cleared %d%% of the frame" % (100*cleared//(w*h)))
 print("face centroid: (%.0f, %.0f) of %dx%d" % (cx,cy,w,h))
 
-import os
-os.makedirs('assets/icons', exist_ok=True)
+import os, shutil, struct
+OUT='assets/icons'
+os.makedirs(OUT, exist_ok=True)
+for f in os.listdir(OUT):
+    os.remove(os.path.join(OUT,f))
+
 for size in (512,192,180,64,32,16):
-    pngkit.encode('assets/icons/cutout-%d.png'%size, size,size, sample(px, alpha, size, False))
-    pngkit.encode('assets/icons/circle-%d.png'%size, size,size, sample(px, None,  size, True))
-print("wrote", len(os.listdir('assets/icons')), "files")
+    # default = Squarespace framing: whole photo, square, background kept
+    pngkit.encode('%s/favicon-%d.png'%(OUT,size), size,size,
+                  sample(px, None, size, False, tight=False))
+    # kept for comparison
+    pngkit.encode('%s/circle-%d.png'%(OUT,size), size,size,
+                  sample(px, None, size, True, tight=True))
+
+shutil.copy('%s/favicon-180.png'%OUT, '%s/apple-touch-icon.png'%OUT)
+
+def make_ico(out, sizes):
+    imgs=[(z, open('%s/favicon-%d.png'%(OUT,z),'rb').read()) for z in sizes]
+    hdr=struct.pack('<HHH',0,1,len(imgs)); off=6+16*len(imgs); ent=b''; blob=b''
+    for z,d in imgs:
+        ent+=struct.pack('<BBBBHHII', z if z<256 else 0, z if z<256 else 0,0,0,1,32,len(d),off)
+        blob+=d; off+=len(d)
+    open(out,'wb').write(hdr+ent+blob)
+make_ico('favicon.ico',[16,32,64])
+print("wrote", len(os.listdir(OUT)), "icons + favicon.ico")
