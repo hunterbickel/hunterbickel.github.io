@@ -33,6 +33,10 @@
   --accent-dim: var(--blue);
   --focus:      #9ad2f7;
 
+  /* the one warm accent, used only for the construction notice */
+  --warn:       #f08a4b;
+  --warn-text:  #ffd9bd;
+
   --serif: "PT Serif", "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
   --sans:  -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   --mono:  ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
@@ -104,32 +108,43 @@ main { padding-bottom: 5rem; }
 
 /* ---------- under-construction notice ---------- */
 
+/* Amber reads as a caution stripe against the navy and is the one warm
+   note on the site, so the banner separates itself from the masthead. */
 .construction {
-  background: var(--paper-2);
-  border-bottom: 1px solid var(--rule);
+  background: rgba(240, 138, 75, 0.13);
+  border-top: 1px solid rgba(240, 138, 75, 0.45);
+  border-bottom: 2px solid var(--warn);
 }
 .construction__inner {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: 0.45rem 0.75rem;
-  padding-top: 0.7rem;
-  padding-bottom: 0.7rem;
-  font-family: var(--sans);
-  font-size: 0.85rem;
-  line-height: 1.45;
-  color: var(--ink-soft);
+  gap: 0.6rem 1rem;
+  padding-top: 1.15rem;
+  padding-bottom: 1.15rem;
 }
 .construction__tag {
-  font-size: 0.66rem;
-  font-weight: 600;
-  letter-spacing: 0.11em;
+  font-family: var(--sans);
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--accent);
-  border: 1px solid var(--accent-dim);
-  border-radius: 2px;
-  padding: 0.14rem 0.45rem;
+  color: #2a1405;
+  background: var(--warn);
+  border-radius: 3px;
+  padding: 0.34rem 0.7rem;
   white-space: nowrap;
+}
+.construction__msg {
+  font-family: var(--sans);
+  font-size: 1.02rem;
+  font-weight: 500;
+  line-height: 1.45;
+  color: var(--warn-text);
+}
+
+@media (max-width: 33rem) {
+  .construction__msg { font-size: 0.95rem; }
 }
 
 /* ---------- page head ---------- */
@@ -405,6 +420,17 @@ a:hover { color: var(--accent); border-bottom-color: var(--accent); }
   font-size: 0.82rem;
   color: var(--muted);
 }
+.disclaimer {
+  max-width: 46rem;
+  margin: 0 0 1.4rem;
+  padding-bottom: 1.3rem;
+  border-bottom: 1px solid var(--rule-soft);
+  font-family: var(--sans);
+  font-size: 0.78rem;
+  line-height: 1.55;
+  color: var(--muted);
+}
+
 .footer__inner { display: flex; flex-wrap: wrap; gap: 0.6rem 1.5rem; align-items: center; }
 .footer a { color: var(--muted); border-bottom-color: var(--rule-soft); }
 .footer a:hover { color: var(--accent); }
