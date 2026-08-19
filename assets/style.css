@@ -9,6 +9,9 @@
      --light #eaeaee  lightAccent (form/panel fills)
      white   #ffffff  body text and links
 
+   The Squarespace site set headings in PT Serif; this one deliberately
+   does not — the palette was adopted, the typeface was not.
+
    Links are white with an underline, matching the Squarespace site:
    #1470af on #113c60 is only 2.15:1, far below the 4.5:1 needed for
    body text, so the accent is used for buttons and rules instead.
@@ -40,7 +43,7 @@
   /* links sit blue and cool to grey on hover */
   --link-hover: #aab6c2;
 
-  --serif: "PT Serif", "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+  --serif: "Iowan Old Style", "Palatino Linotype", Palatino, "Book Antiqua", Georgia, serif;
   --sans:  -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   --mono:  ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
 
@@ -85,9 +88,9 @@ main { padding-bottom: 5rem; }
   padding-bottom: 1.4rem;
 }
 .masthead__name {
-  font-size: 1.32rem;
-  font-weight: 600;
-  letter-spacing: -0.01em;
+  font-size: 1.4rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
   margin: 0;
   white-space: nowrap;
 }
@@ -154,17 +157,27 @@ main { padding-bottom: 5rem; }
 
 .page-head { padding: 3.2rem 0 2.2rem; }
 .page-head h1 {
-  font-size: clamp(1.9rem, 4.5vw, 2.6rem);
-  line-height: 1.15;
-  letter-spacing: -0.02em;
-  margin: 0 0 0.6rem;
-  font-weight: 600;
+  font-size: clamp(2.5rem, 6.5vw, 3.8rem);
+  line-height: 1.02;
+  letter-spacing: -0.035em;
+  margin: 0 0 0.7rem;
+  font-weight: 700;
 }
+
+/* Article pages sit in the narrow reading column, so their (much longer)
+   titles run a size down — 3.8rem in a 34rem measure wraps to five lines. */
+.wrap--read .page-head h1 {
+  font-size: clamp(2rem, 5vw, 2.7rem);
+  line-height: 1.08;
+  letter-spacing: -0.03em;
+}
+
 .page-head .dek {
-  font-family: var(--sans);
-  font-size: 1rem;
-  line-height: 1.55;
-  color: var(--muted);
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 1.24rem;
+  line-height: 1.5;
+  color: var(--ink-soft);
   margin: 0;
   max-width: 38rem;
 }
@@ -172,12 +185,12 @@ main { padding-bottom: 5rem; }
 /* ---------- typography ---------- */
 
 h2 {
-  font-size: 1.3rem;
-  font-weight: 600;
-  letter-spacing: -0.008em;
-  margin: 2.8rem 0 1rem;
+  font-size: 1.62rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin: 2.9rem 0 1rem;
 }
-h3 { font-size: 1.08rem; font-weight: 600; margin: 2rem 0 0.5rem; }
+h3 { font-size: 1.2rem; font-weight: 700; letter-spacing: -0.01em; margin: 2.1rem 0 0.5rem; }
 
 p { margin: 0 0 1.15rem; }
 
@@ -200,14 +213,14 @@ a:hover { color: var(--link-hover); border-bottom-color: var(--link-hover); }
 
 .section-label {
   font-family: var(--sans);
-  font-size: 0.74rem;
-  font-weight: 600;
-  letter-spacing: 0.13em;
+  font-size: 1.02rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
   text-transform: uppercase;
-  color: var(--muted);
-  margin: 0 0 1.4rem;
-  padding-bottom: 0.55rem;
-  border-bottom: 1px solid var(--rule);
+  color: var(--accent);
+  margin: 0 0 1.5rem;
+  padding-bottom: 0.7rem;
+  border-bottom: 2px solid var(--accent);
 }
 
 .placeholder {
@@ -255,7 +268,7 @@ a:hover { color: var(--link-hover); border-bottom-color: var(--link-hover); }
   align-items: baseline;
   gap: 0.25rem 1rem;
 }
-.entry__role { font-size: 1.06rem; font-weight: 600; margin: 0; flex: 1 1 20rem; }
+.entry__role { font-size: 1.28rem; font-weight: 700; letter-spacing: -0.015em; margin: 0; flex: 1 1 20rem; }
 .entry__dates {
   font-family: var(--sans);
   font-size: 0.8rem;
@@ -284,7 +297,7 @@ a:hover { color: var(--link-hover); border-bottom-color: var(--link-hover); }
 
 .piece { padding: 1.6rem 0; border-bottom: 1px solid var(--rule-soft); }
 .piece:last-child { border-bottom: 0; }
-.piece__title { font-size: 1.14rem; font-weight: 600; margin: 0 0 0.3rem; }
+.piece__title { font-size: 1.3rem; font-weight: 700; letter-spacing: -0.015em; margin: 0 0 0.35rem; }
 .piece__title a { color: var(--ink); border-bottom: 0; }
 .piece__title a:hover { color: var(--link-hover); }
 .piece__meta {
@@ -329,10 +342,10 @@ a:hover { color: var(--link-hover); border-bottom-color: var(--link-hover); }
   margin: 0 0 0.45rem;
 }
 .post__title {
-  font-size: 1.55rem;
-  line-height: 1.22;
-  letter-spacing: -0.015em;
-  font-weight: 600;
+  font-size: 1.95rem;
+  line-height: 1.12;
+  letter-spacing: -0.028em;
+  font-weight: 700;
   margin: 0 0 0.9rem;
 }
 .post__title a { color: var(--ink); border-bottom: 0; }
