@@ -391,6 +391,9 @@ a:hover { color: var(--link-hover); border-bottom-color: var(--link-hover); }
   margin: 0.2rem 0 0.6rem;
 }
 .entry__org .sep { color: var(--rule); padding: 0 0.45rem; }
+.entry__sub em { font-style: italic; }
+.entry__note + .entry__note { margin-top: 0.85rem; }
+
 .entry__note {
   margin: 0;
   font-size: 0.97rem;
@@ -399,7 +402,10 @@ a:hover { color: var(--link-hover); border-bottom-color: var(--link-hover); }
   max-width: 46rem;
 }
 
-.entry__note + .entry__note { margin-top: 0.75rem; }
+.entry__note + .entry__sub em { font-style: italic; }
+.entry__note + .entry__note { margin-top: 0.85rem; }
+
+.entry__note { margin-top: 0.75rem; }
 
 .entry__sub {
   font-size: 1.06rem;
