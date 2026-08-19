@@ -290,6 +290,95 @@ a:hover { color: var(--link-hover); border-bottom-color: var(--link-hover); }
   color: var(--ink-soft);
 }
 
+.entry__note + .entry__note { margin-top: 0.75rem; }
+
+.entry__sub {
+  font-size: 1.06rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  margin: 1.5rem 0 0.5rem;
+}
+
+/* two portrait trip photos side by side; stacking them would make this
+   entry tower over the others in the section */
+.entry__photos {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.9rem;
+  max-width: 30rem;
+  margin: 1.2rem 0 0.4rem;
+}
+.entry__photos figure { margin: 0; }
+.entry__photos img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+/* cities visited */
+.citylist {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem 0.5rem;
+  margin: 0 0 0.4rem;
+  padding: 0;
+}
+.citylist li {
+  font-family: var(--sans);
+  font-size: 0.86rem;
+  font-weight: 600;
+  color: var(--ink-soft);
+  border: 1px solid var(--rule);
+  border-radius: 3px;
+  padding: 0.22rem 0.6rem;
+}
+
+/* agencies met, each with its mark on a white tile — the logos are
+   supplied on white and would otherwise disappear into the navy */
+.orglist { list-style: none; margin: 0; padding: 0; }
+.orglist li {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  padding: 0.55rem 0;
+}
+.orglist__mark {
+  flex: 0 0 auto;
+  width: 4.6rem;
+  height: 2.9rem;
+  background: #fff;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.3rem;
+}
+.orglist__mark img { max-width: 100%; max-height: 100%; display: block; }
+.orglist__text {
+  font-family: var(--sans);
+  font-size: 0.88rem;
+  line-height: 1.4;
+  color: var(--muted);
+}
+.orglist__text strong {
+  display: block;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--ink);
+  margin-bottom: 0.1rem;
+}
+
+@media (max-width: 30rem) {
+  .entry__photos { grid-template-columns: 1fr; max-width: 17rem; }
+  .orglist__mark { width: 3.8rem; height: 2.4rem; }
+}
+
+.entry .notice { margin-top: 1.1rem; }
+
 .entry ul { margin: 0; padding-left: 1.2rem; font-size: 0.97rem; }
 .entry li { margin-bottom: 0.35rem; color: var(--ink-soft); }
 
