@@ -187,10 +187,10 @@ main { padding-bottom: 5rem; }
 .tabs__list {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.4rem;
+  gap: 0.3rem;
   margin: 0 0 2.2rem;
-  padding: 0 0 0.5rem;
-  border-bottom: 2px solid var(--rule);
+  padding: 0;
+  border-bottom: 2px solid var(--accent);
 }
 .tabs__tab {
   font-family: var(--sans);
@@ -199,18 +199,19 @@ main { padding-bottom: 5rem; }
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--muted);
-  background: transparent;
-  border: 0;
-  border-bottom: 3px solid transparent;
-  border-radius: 3px 3px 0 0;
-  padding: 0.55rem 1rem;
-  margin-bottom: -0.65rem;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--rule);
+  border-bottom: 0;
+  border-radius: 6px 6px 0 0;
+  padding: 0.6rem 1.15rem;
+  margin-bottom: -2px;      /* sit on the rule, not above it */
   cursor: pointer;
 }
-.tabs__tab:hover { color: var(--ink); }
+.tabs__tab:hover { color: var(--ink); background: rgba(255, 255, 255, 0.08); }
 .tabs__tab[aria-selected="true"] {
-  color: var(--accent);
-  border-bottom-color: var(--accent);
+  color: var(--navy);
+  background: var(--accent);
+  border-color: var(--accent);
 }
 .tabs__tab:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
 
@@ -274,6 +275,67 @@ a:hover { color: var(--link-hover); border-bottom-color: var(--link-hover); }
 }
 .placeholder strong { color: var(--accent); }
 
+/* ---------- education entry header ---------- */
+
+/* Fixed crest column so all three marks share a hard left edge — they are
+   very different shapes (a wide wordmark, a tall photo), and without the
+   fixed column the titles would step in and out. */
+.entry__head {
+  display: grid;
+  grid-template-columns: 9.5rem 1fr auto;
+  align-items: center;
+  gap: 1.3rem;
+  margin-bottom: 1.1rem;
+}
+.entry__crest {
+  width: 9.5rem;
+  height: 6.2rem;
+  border-radius: 5px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* A logo is contained and never cropped — a cropped wordmark is a broken
+   one. A photograph fills its frame instead, since letterboxing it inside
+   a white tile turns it into a floating thumbnail. The sources run from
+   4.06:1 (SJSU) to 1.33:1 (the London photo), so one rule cannot serve both. */
+.entry__crest[data-kind="logo"] { background: #fff; padding: 0.6rem; }
+.entry__crest[data-kind="logo"] img {
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  display: block;
+}
+.entry__crest[data-kind="photo"] { background: var(--paper-2); padding: 0; }
+.entry__crest[data-kind="photo"] img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.entry__head .entry__mid { min-width: 0; }
+.entry__head .entry__role { font-size: 1.28rem; margin: 0; }
+.entry__head .entry__org {
+  font-size: 0.9rem;
+  color: var(--ink-soft);
+  margin: 0.15rem 0 0;
+}
+.entry__head .entry__dates {
+  font-size: 0.82rem;
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+@media (max-width: 34rem) {
+  .entry__head { grid-template-columns: 6.6rem 1fr; gap: 0.9rem; }
+  .entry__crest { width: 6.6rem; height: 4.3rem; }
+  .entry__head .entry__role { font-size: 1.1rem; }
+  .entry__head .entry__dates { grid-column: 2; }
+}
+
 /* ---------- figures ---------- */
 
 .prose figure, .post__body figure { margin: 2rem 0; }
@@ -301,12 +363,6 @@ a:hover { color: var(--link-hover); border-bottom-color: var(--link-hover); }
 .entry:first-of-type { padding-top: 0.3rem; }
 .entry:last-child { border-bottom: 0; }
 
-.entry__head {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
-  gap: 0.25rem 1rem;
-}
 .entry__role { font-size: 1.28rem; font-weight: 700; letter-spacing: -0.015em; margin: 0; flex: 1 1 20rem; }
 .entry__dates {
   font-family: var(--sans);
