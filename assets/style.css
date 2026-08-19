@@ -282,7 +282,7 @@ a:hover { color: var(--link-hover); border-bottom-color: var(--link-hover); }
    fixed column the titles would step in and out. */
 .entry__head {
   display: grid;
-  grid-template-columns: 9.5rem 1fr auto;
+  grid-template-columns: 9.5rem 1fr;
   align-items: center;
   gap: 1.3rem;
   margin-bottom: 1.1rem;
@@ -318,22 +318,35 @@ a:hover { color: var(--link-hover); border-bottom-color: var(--link-hover); }
 }
 .entry__head .entry__mid { min-width: 0; }
 .entry__head .entry__role { font-size: 1.28rem; margin: 0; }
+
+/* Shares the title's serif so the two read as one block; the hierarchy
+   comes from size and weight instead of a change of typeface. The meta
+   line below stays sans, matching dates and tags elsewhere on the site. */
 .entry__head .entry__org {
-  font-size: 0.9rem;
-  color: var(--ink-soft);
-  margin: 0.15rem 0 0;
+  font-family: var(--serif);
+  font-size: 1.08rem;
+  font-weight: 600;
+  letter-spacing: -0.005em;
+  color: var(--ink);
+  margin: 0.2rem 0 0;
 }
-.entry__head .entry__dates {
-  font-size: 0.82rem;
+.entry__head .entry__meta {
+  font-family: var(--sans);
+  font-size: 0.86rem;
   color: var(--muted);
-  white-space: nowrap;
+  margin: 0.16rem 0 0;
+}
+.entry__head .pipe {
+  color: var(--rule);
+  padding: 0 0.45rem;
 }
 
 @media (max-width: 34rem) {
   .entry__head { grid-template-columns: 6.6rem 1fr; gap: 0.9rem; }
   .entry__crest { width: 6.6rem; height: 4.3rem; }
   .entry__head .entry__role { font-size: 1.1rem; }
-  .entry__head .entry__dates { grid-column: 2; }
+  .entry__head .entry__org { font-size: 1rem; }
+  .entry__head .entry__meta { font-size: 0.82rem; }
 }
 
 /* ---------- figures ---------- */
