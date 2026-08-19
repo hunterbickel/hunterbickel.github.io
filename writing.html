@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Research &amp; Writing — Hunter Bickel</title>
 <meta name="description" content="Articles, reports, and a running journal on rail and transit by Hunter Bickel.">
-<link rel="stylesheet" href="assets/style.css?v=f8811f40">
+<link rel="stylesheet" href="assets/style.css?v=8fb20a55">
 <link rel="icon" type="image/png" sizes="32x32" href="assets/icons/favicon-32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="assets/icons/favicon-16.png">
 <link rel="apple-touch-icon" sizes="180x180" href="assets/icons/apple-touch-icon.png">
@@ -44,9 +44,15 @@
       </p>
     </div>
 
-    <!-- ===================== ARTICLES & REPORTS ===================== -->
-    <section aria-labelledby="articles-h">
-      <h2 class="section-label" id="articles-h">Articles &amp; Reports</h2>
+    <div data-tabs>
+      <div class="tabs__list" role="tablist" aria-label="Research and writing">
+        <button class="tabs__tab" role="tab" type="button" data-key="articles"
+                id="tab-articles" aria-controls="panel-articles" aria-selected="true">Articles &amp; Reports</button>
+        <button class="tabs__tab" role="tab" type="button" data-key="journal"
+                id="tab-journal" aria-controls="panel-journal" aria-selected="false">Journal</button>
+      </div>
+
+      <section class="tabs__panel" role="tabpanel" id="panel-articles" aria-labelledby="tab-articles">
 
       <article class="piece">
         <h3 class="piece__title"><a href="articles/france-spain-work-study.html">France &amp; Spain Work Study: Recap</a></h3>
@@ -102,12 +108,9 @@
           high-speed network than its size suggests.
         </p>
       </article>
+      </section>
 
-    </section>
-
-    <!-- ===================== JOURNAL ===================== -->
-    <section aria-labelledby="journal-h" style="margin-top:4rem">
-      <h2 class="section-label" id="journal-h">Journal</h2>
+      <section class="tabs__panel" role="tabpanel" id="panel-journal" aria-labelledby="tab-journal">
 
       <noscript>
         <p class="feed-status">
@@ -120,7 +123,9 @@
       <div class="journal" id="journal-feed">
         <p class="feed-status" id="journal-status">Loading entries&hellip;</p>
       </div>
-    </section>
+      </section>
+    </div>
+
 
   </div>
 </main>
@@ -140,8 +145,9 @@
   </div>
 </footer>
 
+<script src="assets/tabs.js"></script>
 <script src="assets/site.js?v=ba39a8e4"></script>
 <script src="assets/markdown.js?v=d8166909"></script>
-<script src="assets/journal.js?v=341b5364"></script>
+<script src="assets/journal.js?v=c4021ec5"></script>
 </body>
 </html>

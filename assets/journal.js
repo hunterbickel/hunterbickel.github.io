@@ -67,10 +67,16 @@
 
       feed.innerHTML = entries.map(renderPost).join("\n");
 
-      /* Honour a permalink hash now that the posts exist. */
+      /* Honour a permalink hash now that the posts exist. The feed loads
+         after tabs.js has already run, so a link straight to an entry has
+         to re-open the Journal tab before scrolling to it. */
       if (location.hash.length > 1) {
-        var target = document.getElementById(location.hash.slice(1));
-        if (target) target.scrollIntoView();
+        var handled = typeof window.tabsSyncToHash === "function" &&
+                      window.tabsSyncToHash(true);
+        if (!handled) {
+          var target = document.getElementById(location.hash.slice(1));
+          if (target) target.scrollIntoView();
+        }
       }
     })
     .catch(function (err) {

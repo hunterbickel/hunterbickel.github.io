@@ -47,8 +47,8 @@
   --sans:  -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   --mono:  ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
 
-  --measure: 34rem;
-  --wide:    52rem;
+  --measure: 36rem;   /* prose: still ~70 characters, the readable range */
+  --wide:    64rem;   /* page shell — 52rem left ~40% of a laptop screen empty */
 }
 
 *, *::before, *::after { box-sizing: border-box; }
@@ -182,6 +182,45 @@ main { padding-bottom: 5rem; }
   max-width: 38rem;
 }
 
+/* ---------- tabbed sections ---------- */
+
+.tabs__list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin: 0 0 2.2rem;
+  padding: 0 0 0.5rem;
+  border-bottom: 2px solid var(--rule);
+}
+.tabs__tab {
+  font-family: var(--sans);
+  font-size: 1.02rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+  background: transparent;
+  border: 0;
+  border-bottom: 3px solid transparent;
+  border-radius: 3px 3px 0 0;
+  padding: 0.55rem 1rem;
+  margin-bottom: -0.65rem;
+  cursor: pointer;
+}
+.tabs__tab:hover { color: var(--ink); }
+.tabs__tab[aria-selected="true"] {
+  color: var(--accent);
+  border-bottom-color: var(--accent);
+}
+.tabs__tab:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
+
+/* The panel's own section label is redundant once its tab names it. */
+.tabs__panel > .section-label { display: none; }
+
+@media (max-width: 30rem) {
+  .tabs__tab { font-size: 0.92rem; padding: 0.5rem 0.7rem; letter-spacing: 0.1em; }
+}
+
 /* ---------- typography ---------- */
 
 h2 {
@@ -288,6 +327,7 @@ a:hover { color: var(--link-hover); border-bottom-color: var(--link-hover); }
   font-size: 0.97rem;
   line-height: 1.55;
   color: var(--ink-soft);
+  max-width: 46rem;
 }
 
 .entry__note + .entry__note { margin-top: 0.75rem; }
@@ -304,8 +344,8 @@ a:hover { color: var(--link-hover); border-bottom-color: var(--link-hover); }
 .entry__photos {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 0.9rem;
-  max-width: 30rem;
+  gap: 1rem;
+  max-width: 36rem;
   margin: 1.2rem 0 0.4rem;
 }
 .entry__photos figure { margin: 0; }
@@ -348,7 +388,7 @@ a:hover { color: var(--link-hover); border-bottom-color: var(--link-hover); }
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 1.6rem 1.4rem;
-  max-width: 46rem;
+  max-width: 52rem;
 }
 .orglist li {
   display: flex;
@@ -426,7 +466,7 @@ a:hover { color: var(--link-hover); border-bottom-color: var(--link-hover); }
   border-radius: 4px;
   padding: 0.85rem 1.05rem;
   margin: 1.1rem 0 0;
-  max-width: var(--measure);
+  max-width: 44rem;
 }
 .notice__tag {
   font-family: var(--sans);
@@ -469,7 +509,7 @@ a:hover { color: var(--link-hover); border-bottom-color: var(--link-hover); }
   align-items: center;
   gap: 0.5rem;
 }
-.piece__dek { margin: 0; font-size: 0.98rem; color: var(--ink-soft); max-width: var(--measure); }
+.piece__dek { margin: 0; font-size: 0.98rem; color: var(--ink-soft); max-width: 44rem; }
 
 .tag {
   font-family: var(--sans);

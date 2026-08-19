@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Work &amp; Education — Hunter Bickel</title>
 <meta name="description" content="Hunter Bickel — professional experience, education, and other work.">
-<link rel="stylesheet" href="assets/style.css?v=f8811f40">
+<link rel="stylesheet" href="assets/style.css?v=8fb20a55">
 <link rel="icon" type="image/png" sizes="32x32" href="assets/icons/favicon-32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="assets/icons/favicon-16.png">
 <link rel="apple-touch-icon" sizes="180x180" href="assets/icons/apple-touch-icon.png">
@@ -41,10 +41,17 @@
       <p class="dek">Roles, study, and the things that don&rsquo;t fit neatly into either.</p>
     </div>
 
-    <!-- ===================== WORK ===================== -->
-    <section aria-labelledby="work-h">
-      <h2 class="section-label" id="work-h">Work</h2>
-      <div class="entries">
+    <div data-tabs>
+      <div class="tabs__list" role="tablist" aria-label="Work and education">
+        <button class="tabs__tab" role="tab" type="button" data-key="work"
+                id="tab-work" aria-controls="panel-work" aria-selected="true">Work</button>
+        <button class="tabs__tab" role="tab" type="button" data-key="education"
+                id="tab-education" aria-controls="panel-education" aria-selected="false">Education</button>
+      </div>
+
+      <section class="tabs__panel" role="tabpanel" id="panel-work"
+               aria-labelledby="tab-work">
+<div class="entries">
 
       <!-- WORK — writing prompts, not shown on the page:
 <article class="entry">
@@ -87,12 +94,11 @@
         <p style="color:var(--ink-soft)">Full role history coming soon.</p>
 
       </div>
-    </section>
+      </section>
 
-    <!-- ===================== EDUCATION ===================== -->
-    <section aria-labelledby="edu-h">
-      <h2 class="section-label" id="edu-h">Education</h2>
-      <div class="entries">
+      <section class="tabs__panel" role="tabpanel" id="panel-education"
+               aria-labelledby="tab-education">
+<div class="entries">
 
       <!-- EDUCATION — writing prompts, not shown on the page:
             <article class="entry">
@@ -157,6 +163,7 @@
             <li>Paris</li>
             <li>Strasbourg</li>
             <li>Lyon</li>
+            <li>Valence</li>
             <li>Barcelona</li>
             <li>Zaragoza</li>
             <li>Madrid</li>
@@ -253,38 +260,9 @@
         </article>
 
       </div>
-    </section>
+      </section>
+    </div>
 
-    <!-- ===================== OTHER EXPERIENCE ===================== -->
-    <section aria-labelledby="other-h">
-      <h2 class="section-label" id="other-h">Other Experience</h2>
-      <div class="entries">
-
-      <!-- OTHER EXPERIENCE — writing prompts, not shown on the page:
-<article class="entry">
-          <div class="entry__head">
-            <h3 class="entry__role">[Volunteer, advocacy, or membership role]</h3>
-            <span class="entry__dates">20XX &ndash; Present</span>
-          </div>
-          <p class="entry__org">[Organization]</p>
-          <ul>
-            <li>[What you contribute.]</li>
-          </ul>
-        </article>
-
-        <article class="entry">
-          <div class="entry__head">
-            <h3 class="entry__role">[Certification, language, or technical skill]</h3>
-            <span class="entry__dates">20XX</span>
-          </div>
-          <p class="entry__org">[Issuing body]</p>
-        </article>
-      -->
-
-        <p style="color:var(--ink-soft)">Coming soon.</p>
-
-      </div>
-    </section>
 
 </div>
 </main>
@@ -305,6 +283,7 @@
   </div>
 </footer>
 
+<script src="assets/tabs.js"></script>
 <script src="assets/site.js?v=ba39a8e4"></script>
 </body>
 </html>
