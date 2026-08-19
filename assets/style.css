@@ -337,44 +337,73 @@ a:hover { color: var(--link-hover); border-bottom-color: var(--link-hover); }
   padding: 0.22rem 0.6rem;
 }
 
-/* agencies met, each with its mark on a white tile — the logos are
-   supplied on white and would otherwise disappear into the navy */
-.orglist { list-style: none; margin: 0; padding: 0; }
+/* Agencies met on the trip. Large marks in a 3-up grid; each description
+   fades in on hover or keyboard focus, with its space reserved so the grid
+   never jumps. The logos are supplied on white and need the white tile —
+   on the navy they would otherwise disappear. */
+.orglist {
+  list-style: none;
+  margin: 0 0 0.4rem;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.6rem 1.4rem;
+  max-width: 46rem;
+}
 .orglist li {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  gap: 0.9rem;
-  padding: 0.55rem 0;
+  text-align: center;
+  gap: 0.7rem;
 }
+.orglist li:focus { outline: none; }
 .orglist__mark {
-  flex: 0 0 auto;
-  width: 4.6rem;
-  height: 2.9rem;
+  width: 100%;
+  height: 7.2rem;
   background: #fff;
-  border-radius: 4px;
+  border-radius: 5px;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 0.3rem;
+  padding: 1rem;
 }
+.orglist li:focus .orglist__mark { outline: 2px solid var(--focus); outline-offset: 2px; }
 .orglist__mark img { max-width: 100%; max-height: 100%; display: block; }
-.orglist__text {
+.orglist__name {
   font-family: var(--sans);
-  font-size: 0.88rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  line-height: 1.35;
+  color: var(--ink);
+}
+.orglist__desc {
+  font-family: var(--sans);
+  font-size: 0.82rem;
   line-height: 1.4;
   color: var(--muted);
+  min-height: 2.8em;          /* reserved, so revealing it shifts nothing */
+  margin-top: -0.25rem;
+  opacity: 0;
+  transition: opacity 0.18s ease;
 }
-.orglist__text strong {
-  display: block;
-  font-size: 0.95rem;
-  font-weight: 600;
-  color: var(--ink);
-  margin-bottom: 0.1rem;
+.orglist li:hover .orglist__desc,
+.orglist li:focus .orglist__desc,
+.orglist li:focus-within .orglist__desc { opacity: 1; }
+
+/* Touch screens have no hover, and narrow ones have no room for the
+   reserved space — show every description outright instead of hiding it. */
+@media (hover: none), (pointer: coarse), (max-width: 40rem) {
+  .orglist__desc { opacity: 1; min-height: 0; margin-top: 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .orglist__desc { transition: none; }
 }
 
-@media (max-width: 30rem) {
+@media (max-width: 34rem) {
   .entry__photos { grid-template-columns: 1fr; max-width: 17rem; }
-  .orglist__mark { width: 3.8rem; height: 2.4rem; }
+  .orglist { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.3rem 1rem; }
+  .orglist__mark { height: 5.4rem; padding: 0.75rem; }
 }
 
 .entry .notice { margin-top: 1.1rem; }
