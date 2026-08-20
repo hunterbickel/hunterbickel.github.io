@@ -16,7 +16,12 @@
   if (!groups.length) return;
 
   groups.forEach(function (group) {
-    var tabs   = [].slice.call(group.querySelectorAll("[role=tab]"));
+    /* Only this group's own tablist. A tabpanel may itself contain a
+       nested tablist — the city chips inside Education do — and an
+       unscoped query would sweep those up and pair them with the wrong
+       panels, blanking the page. */
+    var tabs = [].slice.call(group.querySelectorAll(":scope > .tabs__list [role=tab]"));
+    if (!tabs.length) tabs = [].slice.call(group.querySelectorAll("[role=tab]"));
     var panels = tabs.map(function (t) {
       return document.getElementById(t.getAttribute("aria-controls"));
     }).filter(Boolean);

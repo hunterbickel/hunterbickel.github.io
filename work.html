@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Work &amp; Education — Hunter Bickel</title>
 <meta name="description" content="Hunter Bickel — professional experience, education, and other work.">
-<link rel="stylesheet" href="assets/style.css?v=30a4cd89">
+<link rel="stylesheet" href="assets/style.css?v=80dc721f">
 <link rel="icon" type="image/png" sizes="32x32" href="assets/icons/favicon-32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="assets/icons/favicon-16.png">
 <link rel="apple-touch-icon" sizes="180x180" href="assets/icons/apple-touch-icon.png">
@@ -164,30 +164,101 @@
           </p>
 
           <h4 class="entry__sub">7 Cities in 12 Days by HSR</h4>
-          <ul class="citylist">
-            <li>Paris</li>
-            <li>Strasbourg</li>
-            <li>Lyon</li>
-            <li>Valence</li>
-            <li>Barcelona</li>
-            <li>Zaragoza</li>
-            <li>Madrid</li>
-          </ul>
 
-          <div class="entry__photos">
-            <figure>
-              <img src="assets/images/work-study/thalys.jpg"
-                   alt="Hunter Bickel beside a Thalys high-speed trainset on a station platform"
-                   loading="lazy" decoding="async">
-            </figure>
-            <figure>
-              <img src="assets/images/work-study/ave-madrid.jpg"
-                   alt="Hunter Bickel beside a Renfe AVE high-speed trainset on a station platform"
-                   loading="lazy" decoding="async">
-            </figure>
+          <div class="cities" data-cities>
+            <ul class="citylist" role="tablist" aria-label="Cities visited">
+              <li><button type="button" class="citychip" role="tab"
+                      id="citytab-paris" aria-controls="city-paris"
+                      aria-selected="true">Paris</button></li>
+              <li><button type="button" class="citychip" role="tab"
+                      id="citytab-strasbourg" aria-controls="city-strasbourg"
+                      aria-selected="false">Strasbourg</button></li>
+              <li><button type="button" class="citychip" role="tab"
+                      id="citytab-lyon" aria-controls="city-lyon"
+                      aria-selected="false">Lyon</button></li>
+              <li><button type="button" class="citychip" role="tab"
+                      id="citytab-valence" aria-controls="city-valence"
+                      aria-selected="false">Valence</button></li>
+              <li><button type="button" class="citychip" role="tab"
+                      id="citytab-barcelona" aria-controls="city-barcelona"
+                      aria-selected="false">Barcelona</button></li>
+              <li><button type="button" class="citychip" role="tab"
+                      id="citytab-zaragoza" aria-controls="city-zaragoza"
+                      aria-selected="false">Zaragoza</button></li>
+              <li><button type="button" class="citychip" role="tab"
+                      id="citytab-madrid" aria-controls="city-madrid"
+                      aria-selected="false">Madrid</button></li>
+            </ul>
+
+            <div class="cities__stage">
+              <p class="cities__prompt" aria-hidden="true">Hover or tap a city to see that stop.</p>
+            <div class="citycard" id="city-paris" role="tabpanel" aria-labelledby="citytab-paris">
+              <figure class="citycard__fig">
+                <img src="assets/images/work-study/cities/paris.svg" alt="Placeholder for a photograph of Paris" loading="lazy" decoding="async">
+              </figure>
+              <p class="citycard__text">
+                Two sentences about Paris go here &mdash; what we saw and who we met.
+                A second sentence on what stuck with you about the stop.
+              </p>
+            </div>
+            <div class="citycard" id="city-strasbourg" role="tabpanel" aria-labelledby="citytab-strasbourg">
+              <figure class="citycard__fig">
+                <img src="assets/images/work-study/cities/strasbourg.svg" alt="Placeholder for a photograph of Strasbourg" loading="lazy" decoding="async">
+              </figure>
+              <p class="citycard__text">
+                Two sentences about Strasbourg go here &mdash; what we saw and who we met.
+                A second sentence on what stuck with you about the stop.
+              </p>
+            </div>
+            <div class="citycard" id="city-lyon" role="tabpanel" aria-labelledby="citytab-lyon">
+              <figure class="citycard__fig">
+                <img src="assets/images/work-study/cities/lyon.svg" alt="Placeholder for a photograph of Lyon" loading="lazy" decoding="async">
+              </figure>
+              <p class="citycard__text">
+                Two sentences about Lyon go here &mdash; what we saw and who we met.
+                A second sentence on what stuck with you about the stop.
+              </p>
+            </div>
+            <div class="citycard" id="city-valence" role="tabpanel" aria-labelledby="citytab-valence">
+              <figure class="citycard__fig">
+                <img src="assets/images/work-study/cities/valence.svg" alt="Placeholder for a photograph of Valence" loading="lazy" decoding="async">
+              </figure>
+              <p class="citycard__text">
+                Two sentences about Valence go here &mdash; what we saw and who we met.
+                A second sentence on what stuck with you about the stop.
+              </p>
+            </div>
+            <div class="citycard" id="city-barcelona" role="tabpanel" aria-labelledby="citytab-barcelona">
+              <figure class="citycard__fig">
+                <img src="assets/images/work-study/cities/barcelona.svg" alt="Placeholder for a photograph of Barcelona" loading="lazy" decoding="async">
+              </figure>
+              <p class="citycard__text">
+                Two sentences about Barcelona go here &mdash; what we saw and who we met.
+                A second sentence on what stuck with you about the stop.
+              </p>
+            </div>
+            <div class="citycard" id="city-zaragoza" role="tabpanel" aria-labelledby="citytab-zaragoza">
+              <figure class="citycard__fig">
+                <img src="assets/images/work-study/cities/zaragoza.svg" alt="Placeholder for a photograph of Zaragoza" loading="lazy" decoding="async">
+              </figure>
+              <p class="citycard__text">
+                Two sentences about Zaragoza go here &mdash; what we saw and who we met.
+                A second sentence on what stuck with you about the stop.
+              </p>
+            </div>
+            <div class="citycard" id="city-madrid" role="tabpanel" aria-labelledby="citytab-madrid">
+              <figure class="citycard__fig">
+                <img src="assets/images/work-study/ave-madrid.jpg" alt="Hunter Bickel beside a Renfe AVE trainset" loading="lazy" decoding="async">
+              </figure>
+              <p class="citycard__text">
+                Two sentences about Madrid go here &mdash; what we saw and who we met.
+                A second sentence on what stuck with you about the stop.
+              </p>
+            </div>
+            </div>
           </div>
 
-          <h4 class="entry__sub">Meetings, Seminars, and Site Tours with Professionals from</h4>
+<h4 class="entry__sub">Meetings, Seminars, and Site Tours with Professionals from</h4>
           <ul class="orglist">
             <li tabindex="0">
               <span class="orglist__mark"><img src="assets/images/work-study/logos/sncf-gares-connexions.png" alt="" loading="lazy" decoding="async"></span>
@@ -294,7 +365,8 @@
   </div>
 </footer>
 
-<script src="assets/tabs.js"></script>
+<script src="assets/tabs.js?v=361e5b38"></script>
+<script src="assets/cities.js?v=e42788a3"></script>
 <script src="assets/site.js?v=ba39a8e4"></script>
 </body>
 </html>

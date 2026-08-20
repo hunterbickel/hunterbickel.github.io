@@ -10,7 +10,8 @@ Run this after editing anything in assets/ and before pushing.
 import hashlib, re, io, glob, os
 
 ASSETS = ['assets/style.css','assets/site.js','assets/markdown.js',
-          'assets/journal.js','assets/contact.js','assets/admin.js','assets/config.js']
+          'assets/journal.js','assets/contact.js','assets/admin.js','assets/config.js',
+          'assets/tabs.js','assets/cities.js']
 
 digest = {}
 for a in ASSETS:

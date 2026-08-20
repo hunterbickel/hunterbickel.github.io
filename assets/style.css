@@ -434,24 +434,89 @@ a:hover { color: var(--link-hover); border-bottom-color: var(--link-hover); }
   border-radius: 4px;
 }
 
-/* cities visited */
+/* ---------- cities visited ---------- */
+
+.cities { margin: 0 0 0.4rem; }
+
 .citylist {
   list-style: none;
   display: flex;
   flex-wrap: wrap;
-  gap: 0.4rem 0.5rem;
-  margin: 0 0 0.4rem;
+  gap: 0.45rem 0.5rem;
+  margin: 0 0 1.1rem;
   padding: 0;
 }
-.citylist li {
+.citychip {
   font-family: var(--sans);
-  font-size: 0.86rem;
+  font-size: 0.88rem;
   font-weight: 600;
   color: var(--ink-soft);
+  background: transparent;
   border: 1px solid var(--rule);
   border-radius: 3px;
-  padding: 0.22rem 0.6rem;
+  padding: 0.3rem 0.7rem;
+  cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
 }
+.citychip:hover { color: var(--ink); border-color: var(--accent); }
+.citychip:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
+
+/* only the live version marks a selection — without the script every card
+   is shown, so highlighting one chip would be misleading */
+.cities--live .citychip[aria-selected="true"] {
+  color: var(--navy);
+  background: var(--accent);
+  border-color: var(--accent);
+}
+
+/* Reserve the card's height so revealing a city does not shove the rest
+   of the entry down the page. */
+.cities--live .cities__stage { min-height: 15rem; }
+
+.cities__prompt {
+  font-family: var(--sans);
+  font-size: 0.9rem;
+  color: var(--muted);
+  margin: 0;
+  padding: 0.2rem 0;
+}
+.cities__prompt[hidden] { display: none; }
+
+.citycard[hidden] { display: none; }
+
+.citycard {
+  display: grid;
+  grid-template-columns: 22rem 1fr;
+  align-items: center;
+  gap: 1.4rem;
+}
+.citycard__fig { margin: 0; }
+.citycard__fig img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+  border-radius: 5px;
+  background: var(--paper-2);
+}
+.citycard__text {
+  font-family: var(--sans);
+  font-size: 0.92rem;
+  line-height: 1.6;
+  color: var(--ink-soft);
+  margin: 0;
+  max-width: 30rem;
+}
+
+/* without JS the cards stack, so give them breathing room */
+.cities:not(.cities--live) .citycard + .citycard { margin-top: 1.4rem; }
+
+@media (max-width: 40rem) {
+  .cities--live .cities__stage { min-height: 0; }
+  .citycard { grid-template-columns: 1fr; gap: 0.9rem; }
+  .citycard__fig img { max-width: 22rem; }
+}
+
 
 /* Agencies met on the trip. Large marks in a 3-up grid; each description
    fades in on hover or keyboard focus, with its space reserved so the grid
