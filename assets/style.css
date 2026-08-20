@@ -182,6 +182,30 @@ main { padding-bottom: 5rem; }
   max-width: 38rem;
 }
 
+/* ---------- about ---------- */
+
+.about {
+  display: grid;
+  grid-template-columns: 20rem 1fr;
+  gap: 2rem;
+  align-items: start;
+}
+.about__portrait { margin: 0; }
+.about__portrait img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 5px;
+  background: var(--paper-2);
+}
+/* the prose already caps its own measure; let the grid column do the work */
+.about__text { max-width: none; }
+
+@media (max-width: 44rem) {
+  .about { grid-template-columns: 1fr; gap: 1.4rem; }
+  .about__portrait { max-width: 16rem; }
+}
+
 /* ---------- tabbed sections ---------- */
 
 .tabs__list {
