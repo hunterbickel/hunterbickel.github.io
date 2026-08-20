@@ -45,7 +45,10 @@ class Body(HTMLParser):
         if tag in KEEP:
             if tag == 'a':
                 href = a.get('href','')
-                if not href or href.startswith('#'): return
+                # An anchor we skip must have its </a> skipped too, or the
+                # closing tag is emitted with nothing to close.
+                if not href or href.startswith('#'):
+                    self.dropa = True; return
                 # Squarespace tag cloud / author byline links go nowhere here
                 if href.startswith('/writing/tag/') or 'author=' in href:
                     self.dropa = True; self.skip += 1; return
