@@ -872,6 +872,22 @@ a.btn {
 a.btn:hover { border-bottom-color: var(--accent); }
 .btn--wide { padding: 0.75rem 1.5rem; font-size: 0.92rem; }
 
+/* An outbound-article button, matching the back link: accent fill, cooling
+   to grey on hover. Kept separate from .btn so the contact and admin
+   buttons keep their white primary treatment. */
+.btn--accent {
+  color: var(--navy);
+  background: var(--accent);
+  border-color: var(--accent);
+}
+a.btn--accent { border-bottom-color: var(--accent); }
+.btn--accent:hover {
+  color: var(--navy);
+  background: var(--link-hover);
+  border-color: var(--link-hover);
+}
+a.btn--accent:hover { border-bottom-color: var(--link-hover); }
+
 .form-status {
   font-family: var(--sans);
   font-size: 0.88rem;
@@ -919,25 +935,25 @@ a.btn:hover { border-bottom-color: var(--accent); }
 
 .back-link {
   font-family: var(--sans);
-  font-size: 0.98rem;
+  font-size: 0.82rem;
   font-weight: 600;
-  letter-spacing: 0.02em;
+  letter-spacing: 0.03em;
   color: var(--navy);
   background: var(--accent);
   border: 1px solid var(--accent);
   border-radius: 4px;
   display: inline-flex;
   align-items: center;
-  gap: 0.5rem;
-  padding: 0.6rem 1.05rem;
-  margin-bottom: 2rem;
+  gap: 0.4rem;
+  padding: 0.4rem 0.8rem;
+  margin-bottom: 1.7rem;
 }
 .back-link:hover {
   color: var(--navy);
   background: var(--link-hover);
   border-color: var(--link-hover);
 }
-.back-link .arrow { font-size: 1.1em; line-height: 1; }
+.back-link .arrow { font-size: 1.05em; line-height: 1; }
 
 .skip {
   position: absolute; left: -9999px;
