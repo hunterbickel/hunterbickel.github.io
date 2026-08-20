@@ -188,9 +188,15 @@ main { padding-bottom: 5rem; }
 .about {
   display: grid;
   grid-template-columns: 20rem 1fr;
-  gap: 2rem;
+  gap: 2.4rem;
   align-items: start;
 }
+/* The bio alone is far shorter than the portrait, which left a tall gap
+   beside it. The contact section shares the column, so the text side is
+   taller than the photograph rather than the other way round. */
+.about__text > .prose { margin-bottom: 0; }
+.about__text #contact { margin-top: 2.4rem; }
+.about__text .form { max-width: none; }
 .about__portrait { margin: 0; }
 .about__portrait img {
   display: block;

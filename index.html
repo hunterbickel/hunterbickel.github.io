@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Hunter Bickel</title>
 <meta name="description" content="Hunter Bickel — writing and research on rail, transit, and the way cities move.">
-<link rel="stylesheet" href="assets/style.css?v=46a36a36">
+<link rel="stylesheet" href="assets/style.css?v=224de560">
 <link rel="icon" type="image/png" sizes="32x32" href="assets/icons/favicon-32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="assets/icons/favicon-16.png">
 <link rel="apple-touch-icon" sizes="180x180" href="assets/icons/apple-touch-icon.png">
@@ -48,56 +48,58 @@
              loading="lazy" decoding="async" width="900" height="1200">
       </figure>
 
-      <div class="prose about__text">
+      <div class="about__text">
+        <div class="prose">
+  
+        <p>
+          I work in Service Communications at the MTA, and I also research &amp; write on
+          mass transit planning and policy topics.
+        </p>
+  
+        <p>
+          A fuller bio is on the way. In the meantime, the clearest picture of what I&rsquo;m
+          interested in is over in <a href="writing.html">Research &amp; Writing</a>.
+        </p>
+  
+        </div>
 
-      <p>
-        I work in Service Communications at the MTA, and I also research &amp; write on
-        mass transit planning and policy topics.
+      <h2 id="contact">Get in touch</h2>
+      <p class="prose" style="color:var(--ink-soft)">
+        Questions, corrections, and pitches all welcome. This goes straight to my inbox.
       </p>
-
-      <p>
-        A fuller bio is on the way. In the meantime, the clearest picture of what I&rsquo;m
-        interested in is over in <a href="writing.html">Research &amp; Writing</a>.
-      </p>
-
+  
+      <form class="form" id="contact-form" novalidate>
+        <div class="field">
+          <label for="cf-name">Name</label>
+          <input type="text" id="cf-name" name="name" autocomplete="name" required>
+        </div>
+        <div class="field">
+          <label for="cf-email">Email</label>
+          <input type="email" id="cf-email" name="email" autocomplete="email" required>
+        </div>
+        <div class="field">
+          <label for="cf-subject">Subject</label>
+          <input type="text" id="cf-subject" name="subject" required>
+        </div>
+        <div class="field">
+          <label for="cf-body">Message</label>
+          <textarea id="cf-body" name="message" rows="8" required></textarea>
+        </div>
+  
+        <!-- honeypot: real people never fill this in -->
+        <div class="hp" aria-hidden="true">
+          <label for="cf-company">Company</label>
+          <input type="text" id="cf-company" name="_gotcha" tabindex="-1" autocomplete="off">
+        </div>
+  
+        <div class="btn-row">
+          <button class="btn" type="submit" id="cf-submit">Send message</button>
+        </div>
+  
+        <p class="form-status" id="cf-status" hidden></p>
+      </form>
       </div>
     </div>
-
-    <h2 id="contact">Get in touch</h2>
-    <p class="prose" style="color:var(--ink-soft)">
-      Questions, corrections, and pitches all welcome. This goes straight to my inbox.
-    </p>
-
-    <form class="form" id="contact-form" novalidate>
-      <div class="field">
-        <label for="cf-name">Name</label>
-        <input type="text" id="cf-name" name="name" autocomplete="name" required>
-      </div>
-      <div class="field">
-        <label for="cf-email">Email</label>
-        <input type="email" id="cf-email" name="email" autocomplete="email" required>
-      </div>
-      <div class="field">
-        <label for="cf-subject">Subject</label>
-        <input type="text" id="cf-subject" name="subject" required>
-      </div>
-      <div class="field">
-        <label for="cf-body">Message</label>
-        <textarea id="cf-body" name="message" rows="8" required></textarea>
-      </div>
-
-      <!-- honeypot: real people never fill this in -->
-      <div class="hp" aria-hidden="true">
-        <label for="cf-company">Company</label>
-        <input type="text" id="cf-company" name="_gotcha" tabindex="-1" autocomplete="off">
-      </div>
-
-      <div class="btn-row">
-        <button class="btn" type="submit" id="cf-submit">Send message</button>
-      </div>
-
-      <p class="form-status" id="cf-status" hidden></p>
-    </form>
 
   </div>
 </main>
