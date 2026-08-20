@@ -460,6 +460,24 @@ a:hover { color: var(--link-hover); border-bottom-color: var(--link-hover); }
 .entry__sub em { font-style: italic; }
 .entry__note + .entry__note { margin-top: 0.85rem; }
 
+/* The opening line of a Work entry summarises the role. It sits between
+   the header and the sub-sections, so it is set apart from body copy
+   without competing with the title above it. */
+/* Sized so each summary sits on one line: the longer of the two runs 110
+   characters, which needs the full column. Emphasis comes from weight and
+   colour rather than size, so it still outranks the 1.06rem notes below
+   without having to be larger than them. */
+.entry__lede {
+  font-family: var(--sans);
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.5;
+  color: var(--ink);
+  margin: 0 0 1.5rem;
+  max-width: none;
+}
+.entry__lede + .entry__sub { margin-top: 0; }
+
 .entry__note {
   margin: 0;
   font-size: 1.06rem;
