@@ -246,6 +246,29 @@ main { padding-bottom: 5rem; }
   .tabs__tab { font-size: 0.92rem; padding: 0.5rem 0.7rem; letter-spacing: 0.1em; }
 }
 
+
+/* ---------- line breaking ---------- */
+
+/* Headings balance across their lines rather than leaving one stray word
+   on the last; body text avoids a single-word final line. Both degrade to
+   ordinary wrapping where unsupported, so nothing breaks. */
+h1, h2, h3, h4,
+.page-head h1, .page-head .dek,
+.post__title, .piece__title, .entry__role, .entry__org, .entry__sub,
+.section-label, .tabs__tab, .orglist__name, .notice__msg, .construction__msg {
+  text-wrap: balance;
+}
+
+p, li, figcaption,
+.prose p, .post__body p, .entry__note, .entry__meta,
+.piece__dek, .citycard__text, .orglist__desc, .disclaimer, .samples__caption {
+  text-wrap: pretty;
+}
+
+/* A last resort for the two worst cases balance cannot help: keep short
+   trailing words attached to what precedes them. */
+.post__title, .piece__title { hyphens: none; }
+
 /* ---------- typography ---------- */
 
 h2 {
@@ -737,7 +760,21 @@ a:hover { color: var(--link-hover); border-bottom-color: var(--link-hover); }
 
 .journal { border-top: 1px solid var(--rule); }
 
-.post { padding: 3rem 0; border-bottom: 1px solid var(--rule-soft); max-width: var(--measure); }
+.post {
+  display: grid;
+  grid-template-columns: 10rem 1fr;
+  gap: 2rem;
+  max-width: 56rem;
+  padding: 2.6rem 0;
+  border-bottom: 1px solid var(--rule-soft);
+}
+/* the date follows the entry down a long scroll */
+.post__rail .post__date { position: sticky; top: 1.5rem; margin: 0.35rem 0 0; }
+.post__main { min-width: 0; max-width: 40rem; }
+/* .prose caps at the 36rem article measure; journal entries sit in their
+   own column and can run a little wider, which lifts ~54 characters a line
+   to ~62 — inside the comfortable range rather than under it. */
+.post__main .post__body.prose { max-width: 40rem; }
 .post:last-child { border-bottom: 0; }
 
 .post__date {
@@ -749,7 +786,7 @@ a:hover { color: var(--link-hover); border-bottom-color: var(--link-hover); }
   margin: 0 0 0.45rem;
 }
 .post__title {
-  font-size: 1.95rem;
+  font-size: 1.8rem;
   line-height: 1.12;
   letter-spacing: -0.028em;
   font-weight: 700;
@@ -758,6 +795,7 @@ a:hover { color: var(--link-hover); border-bottom-color: var(--link-hover); }
 .post__title a { color: var(--ink); border-bottom: 0; }
 .post__title a:hover { color: var(--link-hover); }
 .post__body > *:last-child { margin-bottom: 0; }
+.post__body h3 { font-size: 1.4rem; margin: 2rem 0 0.5rem; }
 .post__tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 1.2rem; }
 
 .feed-status {
@@ -896,6 +934,11 @@ a:hover { color: var(--link-hover); border-bottom-color: var(--link-hover); }
   padding: 0.6rem 1rem; z-index: 10; font-family: var(--sans); font-size: 0.85rem;
 }
 .skip:focus { left: 1rem; top: 1rem; }
+
+@media (max-width: 46rem) {
+  .post { grid-template-columns: 1fr; gap: 0.5rem; }
+  .post__rail .post__date { position: static; }
+}
 
 @media (max-width: 33rem) {
   body { font-size: 18px; }

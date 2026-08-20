@@ -29,23 +29,28 @@
     var id = entry.id || slugify(entry.title || "entry");
     var tags = Array.isArray(entry.tags) ? entry.tags : [];
 
-    var html =
-      '<article class="post" id="' + esc(id) + '">' +
-        '<p class="post__date"><time datetime="' + esc(entry.date || "") + '">' +
-          esc(formatDate(entry.date || "")) +
-        '</time></p>' +
+    /* The date sits in its own rail beside the entry, so it stays in view
+       while a long piece scrolls past. */
+    var main =
         '<h3 class="post__title"><a href="#' + esc(id) + '">' +
           esc(entry.title || "Untitled") +
         '</a></h3>' +
         '<div class="post__body prose">' + window.renderMarkdown(entry.body || "") + '</div>';
 
     if (tags.length) {
-      html += '<p class="post__tags">' + tags.map(function (t) {
+      main += '<p class="post__tags">' + tags.map(function (t) {
         return '<span class="tag">' + esc(t) + '</span>';
       }).join("") + '</p>';
     }
 
-    return html + '</article>';
+    return '<article class="post" id="' + esc(id) + '">' +
+             '<div class="post__rail">' +
+               '<p class="post__date"><time datetime="' + esc(entry.date || "") + '">' +
+                 esc(formatDate(entry.date || "")) +
+               '</time></p>' +
+             '</div>' +
+             '<div class="post__main">' + main + '</div>' +
+           '</article>';
   }
 
   fetch("data/journal.json", { cache: "no-cache" })
