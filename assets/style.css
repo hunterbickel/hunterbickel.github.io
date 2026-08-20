@@ -282,14 +282,14 @@ a:hover { color: var(--link-hover); border-bottom-color: var(--link-hover); }
    fixed column the titles would step in and out. */
 .entry__head {
   display: grid;
-  grid-template-columns: 9.5rem 1fr;
+  grid-template-columns: 11rem 1fr;
   align-items: center;
-  gap: 1.3rem;
+  gap: 1.4rem;
   margin-bottom: 1.1rem;
 }
 .entry__crest {
-  width: 9.5rem;
-  height: 6.2rem;
+  width: 11rem;
+  height: 7.2rem;
   border-radius: 5px;
   overflow: hidden;
   display: flex;
@@ -317,18 +317,18 @@ a:hover { color: var(--link-hover); border-bottom-color: var(--link-hover); }
   display: block;
 }
 .entry__head .entry__mid { min-width: 0; }
-.entry__head .entry__role { font-size: 1.28rem; margin: 0; }
+.entry__head .entry__role { font-size: 1.9rem; line-height: 1.14; margin: 0; }
 
 /* Shares the title's serif so the two read as one block; the hierarchy
    comes from size and weight instead of a change of typeface. The meta
    line below stays sans, matching dates and tags elsewhere on the site. */
 .entry__head .entry__org {
   font-family: var(--serif);
-  font-size: 1.08rem;
+  font-size: 1.24rem;
   font-weight: 600;
   letter-spacing: -0.005em;
   color: var(--ink);
-  margin: 0.2rem 0 0;
+  margin: 0.25rem 0 0;
 }
 .entry__head .entry__meta {
   font-family: var(--sans);
@@ -342,9 +342,10 @@ a:hover { color: var(--link-hover); border-bottom-color: var(--link-hover); }
 }
 
 @media (max-width: 34rem) {
-  .entry__head { grid-template-columns: 6.6rem 1fr; gap: 0.9rem; }
-  .entry__crest { width: 6.6rem; height: 4.3rem; }
-  .entry__head .entry__role { font-size: 1.1rem; }
+  .entry__head { grid-template-columns: 7rem 1fr; gap: 0.9rem; }
+  .entry__crest { width: 7rem; height: 4.6rem; }
+  .entry__head .entry__role { font-size: 1.4rem; }
+  .entry__sub { font-size: 1.2rem; }
   .entry__head .entry__org { font-size: 1rem; }
   .entry__head .entry__meta { font-size: 0.82rem; }
 }
@@ -408,10 +409,10 @@ a:hover { color: var(--link-hover); border-bottom-color: var(--link-hover); }
 .entry__note { margin-top: 0.75rem; }
 
 .entry__sub {
-  font-size: 1.06rem;
+  font-size: 1.42rem;
   font-weight: 700;
-  letter-spacing: -0.01em;
-  margin: 1.5rem 0 0.5rem;
+  letter-spacing: -0.015em;
+  margin: 1.9rem 0 0.7rem;
 }
 
 /* two portrait trip photos side by side; stacking them would make this
@@ -420,7 +421,7 @@ a:hover { color: var(--link-hover); border-bottom-color: var(--link-hover); }
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 1rem;
-  max-width: 36rem;
+  max-width: 24rem;
   margin: 1.2rem 0 0.4rem;
 }
 .entry__photos figure { margin: 0; }
@@ -462,8 +463,8 @@ a:hover { color: var(--link-hover); border-bottom-color: var(--link-hover); }
   padding: 0;
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 1.6rem 1.4rem;
-  max-width: 52rem;
+  gap: 1.3rem 1.1rem;
+  max-width: 40rem;
 }
 .orglist li {
   display: flex;
@@ -475,7 +476,7 @@ a:hover { color: var(--link-hover); border-bottom-color: var(--link-hover); }
 .orglist li:focus { outline: none; }
 .orglist__mark {
   width: 100%;
-  height: 7.2rem;
+  height: 5rem;
   background: #fff;
   border-radius: 5px;
   display: flex;
@@ -487,17 +488,17 @@ a:hover { color: var(--link-hover); border-bottom-color: var(--link-hover); }
 .orglist__mark img { max-width: 100%; max-height: 100%; display: block; }
 .orglist__name {
   font-family: var(--sans);
-  font-size: 0.9rem;
+  font-size: 0.84rem;
   font-weight: 600;
   line-height: 1.35;
   color: var(--ink);
 }
 .orglist__desc {
   font-family: var(--sans);
-  font-size: 0.82rem;
+  font-size: 0.78rem;
   line-height: 1.4;
   color: var(--muted);
-  min-height: 2.8em;          /* reserved, so revealing it shifts nothing */
+  min-height: 2.7em;          /* reserved, so revealing it shifts nothing */
   margin-top: -0.25rem;
   opacity: 0;
   transition: opacity 0.18s ease;
