@@ -41,7 +41,14 @@ window.renderMarkdown = (function () {
         /* href arrives already HTML-escaped from the caller, so quotes are
            entities and cannot break out of the attribute. Escaping again here
            would turn &amp; into &amp;amp; and corrupt query strings. */
-        return '<a href="' + safeUrl(href) + '">' + label + '</a>';
+        var url = safeUrl(href);
+        /* Links that leave the site open in a new tab; in-page anchors and
+           relative links stay put. noreferrer keeps the referring URL out
+           of the destination's logs. */
+        var away = /^https?:/i.test(url);
+        return '<a href="' + url + '"' +
+               (away ? ' target="_blank" rel="noopener noreferrer"' : '') +
+               '>' + label + '</a>';
       })
       .replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>')
       .replace(/(^|[^*])\*([^*]+)\*/g, '$1<em>$2</em>');

@@ -247,6 +247,24 @@ main { padding-bottom: 5rem; }
 }
 
 
+/* ---------- outbound links ---------- */
+
+/* A link that opens a new tab should say so before it is clicked. The
+   marker is hidden from assistive tech, which announces the new-tab
+   behaviour separately. */
+.prose a[target="_blank"]::after,
+.post__body a[target="_blank"]::after,
+.entry__note a[target="_blank"]::after {
+  content: "\2197";
+  display: inline-block;
+  margin-left: 0.18em;
+  font-size: 0.8em;
+  line-height: 1;
+  vertical-align: 0.15em;
+  opacity: 0.65;
+}
+a.btn[target="_blank"]::after { content: none; }
+
 /* ---------- line breaking ---------- */
 
 /* Headings balance across their lines rather than leaving one stray word
