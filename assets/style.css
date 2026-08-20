@@ -859,7 +859,18 @@ a:hover { color: var(--link-hover); border-bottom-color: var(--link-hover); }
 .btn--ghost { background: transparent; color: var(--accent); border-color: rgba(124,192,239,0.45); }
 .btn--ghost:hover { background: var(--accent); color: var(--navy); border-color: var(--accent); }
 
-.btn-row { display: flex; flex-wrap: wrap; gap: 0.7rem; align-items: center; }
+.btn-row { display: flex; flex-wrap: wrap; gap: 0.7rem; align-items: center; margin: 1.6rem 0 0; }
+
+/* the button styles are written for <button>; an <a> also carries the
+   underline every link on this site gets, which has to come off */
+a.btn {
+  display: inline-block;
+  text-decoration: none;
+  border-bottom: 1px solid #ffffff;
+  line-height: 1.35;
+}
+a.btn:hover { border-bottom-color: var(--accent); }
+.btn--wide { padding: 0.75rem 1.5rem; font-size: 0.92rem; }
 
 .form-status {
   font-family: var(--sans);
