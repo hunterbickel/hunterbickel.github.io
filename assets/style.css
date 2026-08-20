@@ -397,7 +397,7 @@ a:hover { color: var(--link-hover); border-bottom-color: var(--link-hover); }
 }
 .entry__head .entry__meta {
   font-family: var(--sans);
-  font-size: 0.86rem;
+  font-size: 0.92rem;
   color: var(--muted);
   margin: 0.16rem 0 0;
 }
@@ -462,8 +462,8 @@ a:hover { color: var(--link-hover); border-bottom-color: var(--link-hover); }
 
 .entry__note {
   margin: 0;
-  font-size: 0.97rem;
-  line-height: 1.55;
+  font-size: 1.06rem;
+  line-height: 1.6;
   color: var(--ink-soft);
   max-width: 46rem;
 }
@@ -521,19 +521,19 @@ a:hover { color: var(--link-hover); border-bottom-color: var(--link-hover); }
 }
 .samples__caption {
   font-family: var(--sans);
-  font-size: 0.8rem;
-  line-height: 1.45;
+  font-size: 0.86rem;
+  line-height: 1.5;
   color: var(--muted);
   margin: 0 0 0.4rem;
   max-width: 30rem;
 }
 
 .pillars {
-  margin: 0.6rem 0 0.9rem;
+  margin: 0.7rem 0 1rem;
   padding-left: 1.2rem;
   font-family: var(--sans);
-  font-size: 0.92rem;
-  line-height: 1.55;
+  font-size: 1.02rem;
+  line-height: 1.6;
   color: var(--ink-soft);
   max-width: 44rem;
 }
@@ -557,13 +557,13 @@ a:hover { color: var(--link-hover); border-bottom-color: var(--link-hover); }
 }
 .citychip {
   font-family: var(--sans);
-  font-size: 0.88rem;
+  font-size: 0.94rem;
   font-weight: 600;
   color: var(--ink-soft);
   background: transparent;
   border: 1px solid var(--rule);
   border-radius: 3px;
-  padding: 0.3rem 0.7rem;
+  padding: 0.36rem 0.8rem;
   cursor: pointer;
   transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
 }
@@ -610,8 +610,8 @@ a:hover { color: var(--link-hover); border-bottom-color: var(--link-hover); }
 }
 .citycard__text {
   font-family: var(--sans);
-  font-size: 0.92rem;
-  line-height: 1.6;
+  font-size: 1rem;
+  line-height: 1.62;
   color: var(--ink-soft);
   margin: 0;
   max-width: 30rem;
@@ -662,17 +662,17 @@ a:hover { color: var(--link-hover); border-bottom-color: var(--link-hover); }
 .orglist__mark img { max-width: 100%; max-height: 100%; display: block; }
 .orglist__name {
   font-family: var(--sans);
-  font-size: 0.84rem;
+  font-size: 0.92rem;
   font-weight: 600;
   line-height: 1.35;
   color: var(--ink);
 }
 .orglist__desc {
   font-family: var(--sans);
-  font-size: 0.78rem;
-  line-height: 1.4;
+  font-size: 0.86rem;
+  line-height: 1.45;
   color: var(--muted);
-  min-height: 2.7em;          /* reserved, so revealing it shifts nothing */
+  min-height: 2.9em;          /* reserved, so revealing it shifts nothing */
   margin-top: -0.25rem;
   opacity: 0;
   transition: opacity 0.18s ease;
