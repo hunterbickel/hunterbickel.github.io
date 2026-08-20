@@ -48,6 +48,7 @@
   --mono:  ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
 
   --measure: 36rem;   /* prose: still ~70 characters, the readable range */
+  --entry-measure: 46rem;  /* the shared right edge inside a Work/Education entry */
   --wide:    64rem;   /* page shell — 52rem left ~40% of a laptop screen empty */
 }
 
@@ -351,6 +352,7 @@ a:hover { color: var(--link-hover); border-bottom-color: var(--link-hover); }
   align-items: center;
   gap: 1.4rem;
   margin-bottom: 1.1rem;
+  max-width: var(--entry-measure);
 }
 .entry__crest {
   width: 11rem;
@@ -474,7 +476,7 @@ a:hover { color: var(--link-hover); border-bottom-color: var(--link-hover); }
   line-height: 1.5;
   color: var(--ink);
   margin: 0 0 1.5rem;
-  max-width: none;
+  max-width: var(--entry-measure);
 }
 .entry__lede + .entry__sub { margin-top: 0; }
 
@@ -492,6 +494,7 @@ a:hover { color: var(--link-hover); border-bottom-color: var(--link-hover); }
 .entry__note { margin-top: 0.75rem; }
 
 .entry__sub {
+  max-width: var(--entry-measure);
   font-size: 1.42rem;
   font-weight: 700;
   letter-spacing: -0.015em;
@@ -525,7 +528,7 @@ a:hover { color: var(--link-hover); border-bottom-color: var(--link-hover); }
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 1rem;
-  max-width: 26rem;
+  max-width: 26rem;   /* phone screenshots; deliberately narrower */
   margin: 1.1rem 0 0.5rem;
 }
 .samples--one { grid-template-columns: 1fr; max-width: 30rem; }
@@ -547,13 +550,13 @@ a:hover { color: var(--link-hover); border-bottom-color: var(--link-hover); }
 }
 
 .pillars {
+  max-width: var(--entry-measure);
   margin: 0.7rem 0 1rem;
   padding-left: 1.2rem;
   font-family: var(--sans);
   font-size: 1.02rem;
   line-height: 1.6;
   color: var(--ink-soft);
-  max-width: 44rem;
 }
 .pillars li { margin-bottom: 0.4rem; }
 
@@ -563,7 +566,7 @@ a:hover { color: var(--link-hover); border-bottom-color: var(--link-hover); }
 
 /* ---------- cities visited ---------- */
 
-.cities { margin: 0 0 0.4rem; }
+.cities { margin: 0 0 0.4rem; max-width: var(--entry-measure); }
 
 .citylist {
   list-style: none;
@@ -612,6 +615,7 @@ a:hover { color: var(--link-hover); border-bottom-color: var(--link-hover); }
 .citycard[hidden] { display: none; }
 
 .citycard {
+  max-width: var(--entry-measure);
   display: grid;
   grid-template-columns: 22rem 1fr;
   align-items: center;
@@ -656,7 +660,7 @@ a:hover { color: var(--link-hover); border-bottom-color: var(--link-hover); }
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 1.3rem 1.1rem;
-  max-width: 40rem;
+  max-width: var(--entry-measure);
 }
 .orglist li {
   display: flex;
