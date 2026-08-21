@@ -66,6 +66,8 @@
       });
     });
 
-    clear();
+    /* Opens on the first city rather than an empty stage, so the section
+       reads as populated before anyone interacts with it. */
+    select(0);
   });
 })();

@@ -180,7 +180,7 @@ main { padding-bottom: 5rem; }
   line-height: 1.5;
   color: var(--ink-soft);
   margin: 0;
-  max-width: 38rem;
+  max-width: 52rem;
 }
 
 /* ---------- about ---------- */
@@ -278,11 +278,15 @@ a.btn[target="_blank"]::after { content: none; }
    on the last; body text avoids a single-word final line. Both degrade to
    ordinary wrapping where unsupported, so nothing breaks. */
 h1, h2, h3, h4,
-.page-head h1, .page-head .dek,
-.post__title, .piece__title, .entry__role, .entry__org, .entry__sub,
+.page-head h1,
+.post__title, .piece__title, .entry__org, .entry__sub,
 .section-label, .tabs__tab, .orglist__name, .notice__msg, .construction__msg {
   text-wrap: balance;
 }
+
+/* These fill the line rather than balancing: balance was breaking the dek
+   early and splitting "Urban Planning" across lines in the entry title. */
+.page-head .dek, .entry__role { text-wrap: pretty; }
 
 p, li, figcaption,
 .prose p, .post__body p, .entry__note, .entry__meta,
@@ -788,6 +792,27 @@ a:hover { color: var(--link-hover); border-bottom-color: var(--link-hover); }
   gap: 0.5rem;
 }
 .piece__dek { margin: 0; font-size: 0.98rem; color: var(--ink-soft); max-width: 44rem; }
+
+/* Publication venue and date each get their own slot, so a piece never
+   shows one in the space where another shows the other. */
+.piece__where {
+  font-family: var(--sans);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--muted);
+  border: 1px solid var(--rule);
+  border-radius: 3px;
+  padding: 0.12rem 0.45rem;
+  white-space: nowrap;
+}
+.piece__when {
+  font-family: var(--sans);
+  font-size: 0.82rem;
+  color: var(--muted);
+}
+
 
 .tag {
   font-family: var(--sans);
