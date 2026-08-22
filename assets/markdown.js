@@ -67,20 +67,25 @@ window.renderMarkdown = (function () {
 
       if (/^---+$/.test(b)) { out.push("<hr>"); return; }
 
-      /* an image block: one ![](src) line, then optional caption lines.
-         Captions run through inline() so links inside them survive. */
+      /* An image block: a ![](src) line, then optional caption lines, repeated.
+         A caption belongs to the image directly above it, so write them with
+         no blank line between — a blank line starts a new block and leaves the
+         caption stranded as a paragraph.
+
+         Two images in one block are laid out side by side, each keeping its
+         own caption. Captions run through inline() so links inside survive. */
       if (/^!\[[^\]]*\]\([^)\s]+\)/.test(b)) {
         var lines = b.split("\n");
-        var html2 = [];
+        var figs = [];
         var pending = null;
         var flush = function () {
           if (!pending) return;
-          html2.push('<figure><img src="' + pending.src + '" alt="' + pending.alt +
-                     '" loading="lazy" decoding="async">' +
-                     (pending.cap.length
-                        ? '<figcaption>' + inline(pending.cap.join(" ")) + '</figcaption>'
-                        : '') +
-                     '</figure>');
+          figs.push('<figure><img src="' + pending.src + '" alt="' + pending.alt +
+                    '" loading="lazy" decoding="async">' +
+                    (pending.cap.length
+                       ? '<figcaption>' + inline(pending.cap.join(" ")) + '</figcaption>'
+                       : '') +
+                    '</figure>');
           pending = null;
         };
         lines.forEach(function (ln) {
@@ -89,7 +94,9 @@ window.renderMarkdown = (function () {
           else if (pending && ln.trim()) { pending.cap.push(ln.trim()); }
         });
         flush();
-        out.push(html2.join(""));
+        out.push(figs.length === 2
+          ? '<div class="figure--pair">' + figs.join("") + '</div>'
+          : figs.join(""));
         return;
       }
 

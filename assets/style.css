@@ -377,7 +377,7 @@ a:hover { color: var(--link-hover); border-bottom-color: var(--link-hover); }
 /* A logo is contained and never cropped — a cropped wordmark is a broken
    one. A photograph fills its frame instead, since letterboxing it inside
    a white tile turns it into a floating thumbnail. The sources run from
-   4.06:1 (SJSU) to 1.33:1 (the London photo), so one rule cannot serve both. */
+   4.06:1 (SJSU) to 1:1 (Mizzou Global Programs), so one rule cannot serve both. */
 .entry__crest[data-kind="logo"] { background: #fff; padding: 0.6rem; }
 .entry__crest[data-kind="logo"] img {
   max-width: 100%;
