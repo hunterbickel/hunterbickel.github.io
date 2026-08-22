@@ -5,3 +5,6 @@
 .claude/
 assets/icons/circle-*.png
 preview/
+
+# full-size originals; the optimised copies under work-study/cities are what ship
+assets/images/city photos/
