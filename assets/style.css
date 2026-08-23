@@ -626,18 +626,17 @@ a:hover { color: var(--link-hover); border-bottom-color: var(--link-hover); }
 
 /* Phone screenshots are tall and narrow; at full column width they would
    dominate the entry, so they are capped and sat side by side. */
-/* Twelve full-screen captures, cropped free of the status bar and tab bar
-   (1:2.17 down to 1:1.86). Three across is the trade that holds: around 220px
-   each, where the alert headline and route bullets read at a glance. Two
-   across is more legible but runs six rows; four is three rows but drops each
-   shot to ~160px, where the body text becomes texture rather than text. */
+/* Alert samples, grouped into labelled rows. Every screenshot lands at the
+   same ~225px whatever the row holds, so a single shot does not balloon and a
+   trio does not shrink — the widths below are chosen to make that true. */
 .samples {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 0.85rem;
-  max-width: 44rem;
   margin: 1.1rem 0 0.5rem;
 }
+.samples--single { grid-template-columns: 1fr;                        max-width: 14rem; }
+.samples--pair   { grid-template-columns: repeat(2, minmax(0, 1fr));  max-width: 29rem; }
+.samples--trio   { grid-template-columns: repeat(3, minmax(0, 1fr));  max-width: 44rem; }
 .samples--one { grid-template-columns: 1fr; max-width: 30rem; }
 .samples__item { margin: 0; }
 .samples__item img {
@@ -674,10 +673,10 @@ a:hover { color: var(--link-hover); border-bottom-color: var(--link-hover); }
 .pillars li { margin-bottom: 0.4rem; }
 
 @media (max-width: 44rem) {
-  .samples { grid-template-columns: repeat(2, minmax(0, 1fr)); max-width: 24rem; }
+  .samples--trio { grid-template-columns: repeat(2, minmax(0, 1fr)); max-width: 29rem; }
 }
-@media (max-width: 26rem) {
-  .samples { grid-template-columns: 1fr; max-width: 14rem; }
+@media (max-width: 30rem) {
+  .samples--trio, .samples--pair { grid-template-columns: 1fr; max-width: 14rem; }
 }
 
 /* ---------- cities visited ---------- */
