@@ -47,6 +47,23 @@
   --sans:  -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   --mono:  ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
 
+  /* Type scale. The site had drifted into six near-identical sizes doing one
+     job — 0.68/0.72/0.74/0.76/0.78rem all reading as "small uppercase label",
+     and 0.78/0.82/0.85/0.86/0.88rem all reading as "small grey note". These
+     tokens collapse each of those into one value so new rules have something
+     to reach for instead of inventing another. */
+  --fs-tag:    0.70rem;   /* pills: category, coming-soon, to-write, banner */
+  --fs-label:  0.78rem;   /* form labels, post dates */
+  --fs-nav:    0.82rem;   /* masthead navigation */
+  --fs-tab:    0.98rem;   /* section tabs and section labels */
+  --fs-meta:   0.82rem;   /* captions, footer, hints, timestamps */
+  --fs-ui:     0.92rem;   /* chips, org names, notices, status lines */
+  --fs-ui-lg:  1rem;      /* ledes, city descriptions, banner message */
+
+  --track-tag:   0.13em;  /* small caps need the width to stay legible */
+  --track-label: 0.08em;
+  --track-tab:   0.12em;
+
   --measure: 36rem;   /* prose: still ~70 characters, the readable range */
   --entry-measure: 46rem;  /* the shared right edge inside a Work/Education entry */
   --wide:    64rem;   /* page shell — 52rem left ~40% of a laptop screen empty */
@@ -101,8 +118,9 @@ main { padding-bottom: 5rem; }
 .nav { display: flex; flex-wrap: wrap; gap: 1.5rem; margin-left: auto; }
 .nav a {
   font-family: var(--sans);
-  font-size: 0.83rem;
-  letter-spacing: 0.055em;
+  font-size: var(--fs-nav);
+  font-weight: 600;
+  letter-spacing: var(--track-label);
   text-transform: uppercase;
   color: var(--muted);
   text-decoration: none;
@@ -132,9 +150,9 @@ main { padding-bottom: 5rem; }
 }
 .construction__tag {
   font-family: var(--sans);
-  font-size: 0.74rem;
+  font-size: var(--fs-tag);
   font-weight: 700;
-  letter-spacing: 0.14em;
+  letter-spacing: var(--track-tag);
   text-transform: uppercase;
   color: #2a1405;
   background: var(--warn);
@@ -144,14 +162,14 @@ main { padding-bottom: 5rem; }
 }
 .construction__msg {
   font-family: var(--sans);
-  font-size: 1.02rem;
+  font-size: var(--fs-ui-lg);
   font-weight: 500;
   line-height: 1.45;
   color: var(--warn-text);
 }
 
 @media (max-width: 33rem) {
-  .construction__msg { font-size: 0.95rem; }
+  .construction__msg { font-size: var(--fs-ui); }
 }
 
 /* ---------- page head ---------- */
@@ -225,9 +243,9 @@ main { padding-bottom: 5rem; }
 }
 .tabs__tab {
   font-family: var(--sans);
-  font-size: 1.02rem;
+  font-size: var(--fs-tab);
   font-weight: 700;
-  letter-spacing: 0.12em;
+  letter-spacing: var(--track-tab);
   text-transform: uppercase;
   color: var(--muted);
   background: rgba(255, 255, 255, 0.04);
@@ -250,7 +268,7 @@ main { padding-bottom: 5rem; }
 .tabs__panel > .section-label { display: none; }
 
 @media (max-width: 30rem) {
-  .tabs__tab { font-size: 0.92rem; padding: 0.5rem 0.7rem; letter-spacing: 0.1em; }
+  .tabs__tab { font-size: var(--fs-ui); padding: 0.5rem 0.7rem; }
 }
 
 
@@ -329,9 +347,9 @@ a:hover { color: var(--link-hover); border-bottom-color: var(--link-hover); }
 
 .section-label {
   font-family: var(--sans);
-  font-size: 1.02rem;
+  font-size: var(--fs-tab);
   font-weight: 700;
-  letter-spacing: 0.15em;
+  letter-spacing: var(--track-tab);
   text-transform: uppercase;
   color: var(--accent);
   margin: 0 0 1.5rem;
@@ -339,16 +357,6 @@ a:hover { color: var(--link-hover); border-bottom-color: var(--link-hover); }
   border-bottom: 2px solid var(--accent);
 }
 
-.placeholder {
-  background: var(--paper-2);
-  border-left: 2px solid var(--accent-dim);
-  padding: 0.9rem 1.1rem;
-  margin: 0 0 1.15rem;
-  font-family: var(--sans);
-  font-size: 0.87rem;
-  line-height: 1.55;
-  color: var(--ink-soft);
-}
 .placeholder strong { color: var(--accent); }
 
 /* ---------- education entry header ---------- */
@@ -409,7 +417,7 @@ a:hover { color: var(--link-hover); border-bottom-color: var(--link-hover); }
 }
 .entry__head .entry__meta {
   font-family: var(--sans);
-  font-size: 0.92rem;
+  font-size: var(--fs-ui);
   color: var(--muted);
   margin: 0.16rem 0 0;
 }
@@ -424,7 +432,7 @@ a:hover { color: var(--link-hover); border-bottom-color: var(--link-hover); }
   .entry__head .entry__role { font-size: 1.4rem; }
   .entry__sub { font-size: 1.2rem; }
   .entry__head .entry__org { font-size: 1rem; }
-  .entry__head .entry__meta { font-size: 0.82rem; }
+  .entry__head .entry__meta { font-size: var(--fs-meta); }
 }
 
 /* ---------- figures ---------- */
@@ -464,7 +472,7 @@ a:hover { color: var(--link-hover); border-bottom-color: var(--link-hover); }
 
 .prose figcaption, .post__body figcaption {
   font-family: var(--sans);
-  font-size: 0.82rem;
+  font-size: var(--fs-meta);
   line-height: 1.45;
   color: var(--muted);
   margin-top: 0.5rem;
@@ -479,16 +487,9 @@ a:hover { color: var(--link-hover); border-bottom-color: var(--link-hover); }
 .entry:last-child { border-bottom: 0; }
 
 .entry__role { font-size: 1.28rem; font-weight: 700; letter-spacing: -0.015em; margin: 0; flex: 1 1 20rem; }
-.entry__dates {
-  font-family: var(--sans);
-  font-size: 0.8rem;
-  letter-spacing: 0.03em;
-  color: var(--muted);
-  white-space: nowrap;
-}
 .entry__org {
   font-family: var(--sans);
-  font-size: 0.9rem;
+  font-size: var(--fs-ui);
   color: var(--ink-soft);
   margin: 0.2rem 0 0.6rem;
 }
@@ -505,7 +506,7 @@ a:hover { color: var(--link-hover); border-bottom-color: var(--link-hover); }
    without having to be larger than them. */
 .entry__lede {
   font-family: var(--sans);
-  font-size: 1rem;
+  font-size: var(--fs-ui-lg);
   font-weight: 600;
   line-height: 1.5;
   color: var(--ink);
@@ -562,7 +563,7 @@ a:hover { color: var(--link-hover); border-bottom-color: var(--link-hover); }
 .samples__item figcaption,
 .samples__note {
   font-family: var(--sans);
-  font-size: 0.82rem;
+  font-size: var(--fs-meta);
   line-height: 1.45;
   color: var(--muted);
   margin: 0.5rem 0 0;
@@ -600,7 +601,7 @@ a:hover { color: var(--link-hover); border-bottom-color: var(--link-hover); }
 }
 .citychip {
   font-family: var(--sans);
-  font-size: 0.94rem;
+  font-size: var(--fs-ui);
   font-weight: 600;
   color: var(--ink-soft);
   background: transparent;
@@ -627,7 +628,7 @@ a:hover { color: var(--link-hover); border-bottom-color: var(--link-hover); }
 
 .cities__prompt {
   font-family: var(--sans);
-  font-size: 0.9rem;
+  font-size: var(--fs-ui);
   color: var(--muted);
   margin: 0;
   padding: 0.2rem 0;
@@ -662,7 +663,7 @@ a:hover { color: var(--link-hover); border-bottom-color: var(--link-hover); }
 }
 .citycard__text {
   font-family: var(--sans);
-  font-size: 1rem;
+  font-size: var(--fs-ui-lg);
   line-height: 1.62;
   color: var(--ink-soft);
   margin: 0;
@@ -714,14 +715,14 @@ a:hover { color: var(--link-hover); border-bottom-color: var(--link-hover); }
 .orglist__mark img { max-width: 100%; max-height: 100%; display: block; }
 .orglist__name {
   font-family: var(--sans);
-  font-size: 0.92rem;
+  font-size: var(--fs-ui);
   font-weight: 600;
   line-height: 1.35;
   color: var(--ink);
 }
 .orglist__desc {
   font-family: var(--sans);
-  font-size: 0.86rem;
+  font-size: var(--fs-meta);
   line-height: 1.45;
   color: var(--muted);
   min-height: 2.9em;          /* reserved, so revealing it shifts nothing */
@@ -770,9 +771,9 @@ a:hover { color: var(--link-hover); border-bottom-color: var(--link-hover); }
   display: block;
   font-family: var(--sans);
   font-style: normal;
-  font-size: 0.68rem;
+  font-size: var(--fs-tag);
   font-weight: 700;
-  letter-spacing: 0.14em;
+  letter-spacing: var(--track-tag);
   text-transform: uppercase;
   color: var(--warn);
   margin-bottom: 0.15rem;
@@ -798,9 +799,9 @@ a:hover { color: var(--link-hover); border-bottom-color: var(--link-hover); }
 }
 .notice__tag {
   font-family: var(--sans);
-  font-size: 0.68rem;
+  font-size: var(--fs-tag);
   font-weight: 700;
-  letter-spacing: 0.13em;
+  letter-spacing: var(--track-tag);
   text-transform: uppercase;
   color: var(--navy);
   background: var(--accent);
@@ -810,7 +811,7 @@ a:hover { color: var(--link-hover); border-bottom-color: var(--link-hover); }
 }
 .notice__msg {
   font-family: var(--sans);
-  font-size: 0.9rem;
+  font-size: var(--fs-ui);
   line-height: 1.5;
   color: var(--ink-soft);
   flex: 1 1 16rem;
@@ -828,7 +829,7 @@ a:hover { color: var(--link-hover); border-bottom-color: var(--link-hover); }
 .piece__title a:hover { color: var(--link-hover); }
 .piece__meta {
   font-family: var(--sans);
-  font-size: 0.78rem;
+  font-size: var(--fs-meta);
   letter-spacing: 0.04em;
   color: var(--muted);
   margin: 0 0 0.5rem;
@@ -843,9 +844,9 @@ a:hover { color: var(--link-hover); border-bottom-color: var(--link-hover); }
    shows one in the space where another shows the other. */
 .piece__where {
   font-family: var(--sans);
-  font-size: 0.72rem;
-  font-weight: 600;
-  letter-spacing: 0.06em;
+  font-size: var(--fs-tag);
+  font-weight: 700;
+  letter-spacing: var(--track-tag);
   text-transform: uppercase;
   color: var(--muted);
   border: 1px solid var(--rule);
@@ -855,16 +856,16 @@ a:hover { color: var(--link-hover); border-bottom-color: var(--link-hover); }
 }
 .piece__when {
   font-family: var(--sans);
-  font-size: 0.82rem;
+  font-size: var(--fs-meta);
   color: var(--muted);
 }
 
 
 .tag {
   font-family: var(--sans);
-  font-size: 0.68rem;
-  font-weight: 600;
-  letter-spacing: 0.09em;
+  font-size: var(--fs-tag);
+  font-weight: 700;
+  letter-spacing: var(--track-tag);
   text-transform: uppercase;
   color: var(--accent);
   border: 1px solid var(--rule);
@@ -896,8 +897,8 @@ a:hover { color: var(--link-hover); border-bottom-color: var(--link-hover); }
 
 .post__date {
   font-family: var(--sans);
-  font-size: 0.76rem;
-  letter-spacing: 0.09em;
+  font-size: var(--fs-label);
+  letter-spacing: var(--track-label);
   text-transform: uppercase;
   color: var(--muted);
   margin: 0 0 0.45rem;
@@ -912,12 +913,12 @@ a:hover { color: var(--link-hover); border-bottom-color: var(--link-hover); }
 .post__title a { color: var(--ink); border-bottom: 0; }
 .post__title a:hover { color: var(--link-hover); }
 .post__body > *:last-child { margin-bottom: 0; }
-.post__body h3 { font-size: 1.4rem; margin: 2rem 0 0.5rem; }
+.post__body h3 { font-size: 1.4rem; }   /* margin comes from the base h3 */
 .post__tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 1.2rem; }
 
 .feed-status {
   font-family: var(--sans);
-  font-size: 0.9rem;
+  font-size: var(--fs-ui);
   color: var(--muted);
   padding: 2.5rem 0;
 }
@@ -929,9 +930,9 @@ a:hover { color: var(--link-hover); border-bottom-color: var(--link-hover); }
 .field label {
   display: block;
   font-family: var(--sans);
-  font-size: 0.78rem;
+  font-size: var(--fs-label);
   font-weight: 600;
-  letter-spacing: 0.075em;
+  letter-spacing: var(--track-label);
   text-transform: uppercase;
   color: var(--muted);
   margin-bottom: 0.4rem;
@@ -951,7 +952,7 @@ a:hover { color: var(--link-hover); border-bottom-color: var(--link-hover); }
 .field input:focus, .field textarea:focus { border-color: var(--blue); outline: 2px solid var(--focus); outline-offset: 1px; }
 .field .hint {
   font-family: var(--sans);
-  font-size: 0.78rem;
+  font-size: var(--fs-meta);
   color: var(--muted);
   margin: 0.35rem 0 0;
   text-transform: none;
@@ -987,7 +988,7 @@ a.btn {
   line-height: 1.35;
 }
 a.btn:hover { border-bottom-color: var(--accent); }
-.btn--wide { padding: 0.75rem 1.5rem; font-size: 0.92rem; }
+.btn--wide { padding: 0.75rem 1.5rem; font-size: var(--fs-ui); }
 
 /* An outbound-article button, matching the back link: accent fill, cooling
    to grey on hover. Kept separate from .btn so the contact and admin
@@ -1007,7 +1008,7 @@ a.btn--accent:hover { border-bottom-color: var(--link-hover); }
 
 .form-status {
   font-family: var(--sans);
-  font-size: 0.88rem;
+  font-size: var(--fs-meta);
   line-height: 1.5;
   margin-top: 1rem;
   padding: 0.7rem 0.9rem;
@@ -1029,7 +1030,7 @@ a.btn--accent:hover { border-bottom-color: var(--link-hover); }
   border-top: 1px solid var(--rule);
   padding: 2rem 0 3rem;
   font-family: var(--sans);
-  font-size: 0.82rem;
+  font-size: var(--fs-meta);
   color: var(--muted);
 }
 .disclaimer {
@@ -1038,7 +1039,7 @@ a.btn--accent:hover { border-bottom-color: var(--link-hover); }
   padding-bottom: 1.3rem;
   border-bottom: 1px solid var(--rule-soft);
   font-family: var(--sans);
-  font-size: 0.78rem;
+  font-size: var(--fs-meta);
   line-height: 1.55;
   color: var(--muted);
 }
@@ -1052,7 +1053,7 @@ a.btn--accent:hover { border-bottom-color: var(--link-hover); }
 
 .back-link {
   font-family: var(--sans);
-  font-size: 0.82rem;
+  font-size: var(--fs-meta);
   font-weight: 600;
   letter-spacing: 0.03em;
   color: var(--navy);
@@ -1082,6 +1083,12 @@ a.btn--accent:hover { border-bottom-color: var(--link-hover); }
 @media (max-width: 46rem) {
   .post { grid-template-columns: 1fr; gap: 0.5rem; }
   .post__rail .post__date { position: static; }
+}
+
+/* Safari on iOS zooms the page when you tap a field whose text is under
+   16px, which throws the contact form off-screen. Desktop keeps its size. */
+@media (max-width: 44rem) {
+  .field input, .field textarea, .field select { font-size: 16px; }
 }
 
 @media (max-width: 33rem) {
