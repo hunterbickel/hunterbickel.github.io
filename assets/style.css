@@ -549,7 +549,7 @@ a:hover { color: var(--link-hover); border-bottom-color: var(--link-hover); }
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 1rem;
-  max-width: 32rem;   /* phone screenshots, now each with its own caption */
+  max-width: 32rem;   /* phone screenshots; four of them wrap to a 2x2 block */
   margin: 1.1rem 0 0.5rem;
 }
 .samples--one { grid-template-columns: 1fr; max-width: 30rem; }
@@ -760,6 +760,30 @@ a:hover { color: var(--link-hover); border-bottom-color: var(--link-hover); }
    rule outranks .pillars on specificity, so the size has to agree here. */
 .entry ul { margin: 0; padding-left: 1.2rem; font-size: 1.06rem; }
 .entry li { margin-bottom: 0.35rem; color: var(--ink-soft); }
+
+/* ---------- copy still to be written ---------- */
+
+/* Marks a passage waiting on Hunter's own words. Deliberately conspicuous:
+   a placeholder that blends in is a placeholder that ships. */
+.todo {
+  color: var(--muted);
+  font-style: italic;
+  border-left: 2px dashed var(--rule);
+  padding-left: 0.85rem;
+}
+.todo::before {
+  content: "To write";
+  display: block;
+  font-family: var(--sans);
+  font-style: normal;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--warn);
+  margin-bottom: 0.15rem;
+}
+.citycard__text.todo { border-left-width: 2px; }
 
 /* ---------- coming-soon notice ---------- */
 
