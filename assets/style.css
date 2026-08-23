@@ -542,6 +542,13 @@ a:hover { color: var(--link-hover); border-bottom-color: var(--link-hover); }
 
 .entry__note { margin-top: 0.75rem; }
 
+/* A title and its subtitle, so the break goes at the colon. Left to itself
+   the line broke between "Better" and "Passenger", splitting the phrase; the
+   full string needs about 1283px and the column is 736px, so one line was
+   never on. */
+.entry__sub--title .title__main { display: block; }
+.entry__sub--title .title__rest { text-wrap: balance; }
+
 .entry__sub {
   max-width: var(--entry-measure);
   font-size: 1.42rem;
