@@ -203,18 +203,17 @@ main { padding-bottom: 5rem; }
 
 /* ---------- about ---------- */
 
-.about {
+/* The split lasts only as long as there is text to sit beside. Running it
+   down the whole page left 613px of empty column under the photograph —
+   the bio is three sentences and the form is 635px tall, so the two sides
+   were never going to meet. The portrait pairs with the bio; the contact
+   section then has the full width to itself. */
+.about__top {
   display: grid;
-  grid-template-columns: 20rem 1fr;
-  gap: 2.4rem;
+  grid-template-columns: 18rem 1fr;
+  gap: 2.2rem;
   align-items: start;
 }
-/* The bio alone is far shorter than the portrait, which left a tall gap
-   beside it. The contact section shares the column, so the text side is
-   taller than the photograph rather than the other way round. */
-.about__text > .prose { margin-bottom: 0; }
-.about__text #contact { margin-top: 2.4rem; }
-.about__text .form { max-width: none; }
 .about__portrait { margin: 0; }
 .about__portrait img {
   display: block;
@@ -223,12 +222,28 @@ main { padding-bottom: 5rem; }
   border-radius: 5px;
   background: var(--paper-2);
 }
-/* the prose already caps its own measure; let the grid column do the work */
-.about__text { max-width: none; }
+.about__top .prose { max-width: 34rem; }
+.about__top .prose p:last-child { margin-bottom: 0; }
+
+.about__rule {
+  border: 0;
+  border-top: 1px solid var(--rule);
+  margin: 2.6rem 0 2.2rem;
+}
+
+/* Name and email are short and belong together, so pairing them takes
+   roughly a third off the height of the form. */
+/* the form keeps the site's reading measure, set on .form further down */
+.form--paired .field-pair {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0 1.15rem;
+}
 
 @media (max-width: 44rem) {
-  .about { grid-template-columns: 1fr; gap: 1.4rem; }
+  .about__top { grid-template-columns: 1fr; gap: 1.4rem; }
   .about__portrait { max-width: 16rem; }
+  .form--paired .field-pair { grid-template-columns: 1fr; }
 }
 
 /* ---------- tabbed sections ---------- */

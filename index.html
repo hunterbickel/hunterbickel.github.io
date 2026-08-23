@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Hunter Bickel</title>
 <meta name="description" content="Hunter Bickel — writing and research on rail, transit, and the way cities move.">
-<link rel="stylesheet" href="assets/style.css?v=658d7ae3">
+<link rel="stylesheet" href="assets/style.css?v=a57c5c11">
 <link rel="icon" type="image/png" sizes="32x32" href="assets/icons/favicon-32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="assets/icons/favicon-16.png">
 <link rel="apple-touch-icon" sizes="180x180" href="assets/icons/apple-touch-icon.png">
@@ -42,42 +42,45 @@
     </div>
 
     <div class="about">
-      <figure class="about__portrait">
-        <img src="assets/images/about/thalys.jpg"
-             alt="Hunter Bickel on a station platform beside a Thalys high-speed trainset"
-             loading="lazy" decoding="async" width="900" height="1200">
-      </figure>
+      <div class="about__top">
+        <figure class="about__portrait">
+          <img src="assets/images/about/thalys.jpg"
+               alt="Hunter Bickel on a station platform beside a Thalys high-speed trainset"
+               loading="lazy" decoding="async" width="900" height="1200">
+        </figure>
 
-      <div class="about__text">
         <div class="prose">
-  
-        <p>
-          I work in Service Communications at the MTA, and I also research &amp; write on
-          mass transit planning and policy topics.
-        </p>
-  
-        <p>
-          Right now, I am adding content about my professional and educational background.
-          In the meantime, check out my writing on
-          <a href="writing.html">Research &amp; Writing</a>.
-        </p>
-  
+          <p>
+            I work in Service Communications at the MTA, and I also research &amp; write on
+            mass transit planning and policy topics.
+          </p>
+
+          <p>
+            Right now, I am adding content about my professional and educational background.
+            In the meantime, check out my writing on
+            <a href="writing.html">Research &amp; Writing</a>.
+          </p>
         </div>
+      </div>
+
+      <hr class="about__rule">
 
       <h2 id="contact">Send me a message</h2>
       <p class="prose" style="color:var(--ink-soft)">
         Reach out to me if you are interested in collaborating or connecting. Use this form
         to write me an email, and I will get back to you as soon as possible.
       </p>
-  
-      <form class="form" id="contact-form" novalidate>
-        <div class="field">
-          <label for="cf-name">Name</label>
-          <input type="text" id="cf-name" name="name" autocomplete="name" required>
-        </div>
-        <div class="field">
-          <label for="cf-email">Email</label>
-          <input type="email" id="cf-email" name="email" autocomplete="email" required>
+
+      <form class="form form--paired" id="contact-form" novalidate>
+        <div class="field-pair">
+          <div class="field">
+            <label for="cf-name">Name</label>
+            <input type="text" id="cf-name" name="name" autocomplete="name" required>
+          </div>
+          <div class="field">
+            <label for="cf-email">Email</label>
+            <input type="email" id="cf-email" name="email" autocomplete="email" required>
+          </div>
         </div>
         <div class="field">
           <label for="cf-subject">Subject</label>
@@ -85,22 +88,21 @@
         </div>
         <div class="field">
           <label for="cf-body">Message</label>
-          <textarea id="cf-body" name="message" rows="8" required></textarea>
+          <textarea id="cf-body" name="message" rows="7" required></textarea>
         </div>
-  
+
         <!-- honeypot: real people never fill this in -->
         <div class="hp" aria-hidden="true">
           <label for="cf-company">Company</label>
           <input type="text" id="cf-company" name="_gotcha" tabindex="-1" autocomplete="off">
         </div>
-  
+
         <div class="btn-row">
           <button class="btn" type="submit" id="cf-submit">Send message</button>
         </div>
-  
+
         <p class="form-status" id="cf-status" hidden></p>
       </form>
-      </div>
     </div>
 
   </div>
