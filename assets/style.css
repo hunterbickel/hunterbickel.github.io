@@ -341,6 +341,61 @@ h2 {
 }
 h3 { font-size: 1.2rem; font-weight: 700; letter-spacing: -0.01em; margin: 2.1rem 0 0.5rem; }
 
+/* ---------- article & journal heading scale ----------
+   The subsection head used to be 1.13x the body text under it, which is not
+   enough to read as a heading at all. Sections now carry a rule above them,
+   so the shape of a long piece is visible while scrolling, and each level
+   steps clearly down from the one above.
+
+   Scoped to prose deliberately: the bare h2 above still serves the contact
+   heading on About, which should not get a rule.
+
+   Articles and journal entries run one tag apart — an article section is h2,
+   a journal section is h3 — because a journal entry's own title is an h3 at
+   1.8rem and its sections have to sit below that. Same devices, own scale. */
+
+.prose h2 {
+  font-size: 2.25rem;          /* 36px — 1.89x the 19px body */
+  letter-spacing: -0.03em;
+  line-height: 1.14;
+  margin: 3.4rem 0 1rem;
+  padding-top: 1.4rem;
+  border-top: 1px solid var(--rule);
+}
+.prose h3 {
+  font-size: 1.6rem;           /* 25.6px — 1.35x body */
+  letter-spacing: -0.02em;
+  margin: 2.5rem 0 0.55rem;
+}
+.prose h4 {
+  font-size: 1.3rem;           /* 20.8px, italic so it never competes */
+  font-weight: 700;
+  font-style: italic;
+  letter-spacing: -0.01em;
+  margin: 2.1rem 0 0.45rem;
+}
+
+/* A journal entry is titled by a 1.8rem .post__title inside a feed, so its
+   sections have to sit under that ceiling rather than match an article's. */
+.post__body h3 {
+  font-size: 1.62rem;          /* 25.9px — clear of the 28.8px entry title */
+  letter-spacing: -0.02em;
+  margin: 3rem 0 0.8rem;
+  padding-top: 1.3rem;
+  border-top: 1px solid var(--rule);
+}
+.post__body h4 {
+  font-size: 1.3rem;
+  font-weight: 700;
+  font-style: italic;
+  letter-spacing: -0.01em;
+  margin: 2.1rem 0 0.45rem;
+}
+
+/* the first head in a piece has the page furniture above it already */
+.prose > h2:first-child,
+.post__body > h3:first-child { margin-top: 0; padding-top: 0; border-top: 0; }
+
 p { margin: 0 0 1.15rem; }
 
 a { color: var(--accent); text-decoration: none; border-bottom: 1px solid rgba(124,192,239,0.42); }
@@ -934,7 +989,6 @@ a:hover { color: var(--link-hover); border-bottom-color: var(--link-hover); }
 .post__title a { color: var(--ink); border-bottom: 0; }
 .post__title a:hover { color: var(--link-hover); }
 .post__body > *:last-child { margin-bottom: 0; }
-.post__body h3 { font-size: 1.4rem; }   /* margin comes from the base h3 */
 .post__tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 1.2rem; }
 
 .feed-status {
