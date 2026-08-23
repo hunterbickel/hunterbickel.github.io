@@ -626,11 +626,14 @@ a:hover { color: var(--link-hover); border-bottom-color: var(--link-hover); }
 
 /* Phone screenshots are tall and narrow; at full column width they would
    dominate the entry, so they are capped and sat side by side. */
+/* Two up. Four across fits the block in one 362px row, but at 166px wide the
+   alert text stops being readable — and reading it is the entire point of a
+   writing sample. Two columns keeps it legible at the cost of a tall block. */
 .samples {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 1rem;
-  max-width: 32rem;   /* phone screenshots; four of them wrap to a 2x2 block */
+  max-width: 34rem;
   margin: 1.1rem 0 0.5rem;
 }
 .samples--one { grid-template-columns: 1fr; max-width: 30rem; }
