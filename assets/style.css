@@ -430,21 +430,34 @@ a:hover { color: var(--link-hover); border-bottom-color: var(--link-hover); }
 /* ---------- figures ---------- */
 
 .prose figure, .post__body figure { margin: 2rem 0; }
+/* Never enlarge a picture past its own pixels. A lot of these came over from
+   Squarespace as narrow screenshots — the Amtrak schedules are 266px wide —
+   and stretching them to fill the column turned their type to mush. Anything
+   wider than the column still fills it; anything smaller sits at its true
+   size, centred. */
 .prose figure img, .post__body figure img,
 .prose > img, .post__body > img {
   display: block;
-  width: 100%;
+  width: auto;
+  max-width: 100%;
   height: auto;
+  margin-inline: auto;
   border-radius: 3px;
   background: var(--paper-2);
 }
-/* two images side by side, each captioned in its own right */
+/* Two images side by side, each captioned in its own right. Halving the
+   reading measure left these two ~359px screenshots at 256px, half the size
+   of every other picture in the article, so the pair steps outside the
+   measure far enough to show both at close to their true size. */
 .figure--pair {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 0.8rem 1rem;
   align-items: start;
   margin: 1.6rem 0;
+  width: min(46rem, calc(100vw - 3rem));
+  margin-left: 50%;
+  transform: translateX(-50%);
 }
 .figure--pair > figure { margin: 0; }
 @media (max-width: 34rem) { .figure--pair { grid-template-columns: 1fr; } }
@@ -522,24 +535,6 @@ a:hover { color: var(--link-hover); border-bottom-color: var(--link-hover); }
   margin: 1.9rem 0 0.7rem;
 }
 
-/* two portrait trip photos side by side; stacking them would make this
-   entry tower over the others in the section */
-.entry__photos {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 1rem;
-  max-width: 24rem;
-  margin: 1.2rem 0 0.4rem;
-}
-.entry__photos figure { margin: 0; }
-.entry__photos img {
-  display: block;
-  width: 100%;
-  height: 100%;
-  aspect-ratio: 3 / 4;
-  object-fit: cover;
-  border-radius: 4px;
-}
 
 /* ---------- work samples ---------- */
 
@@ -748,7 +743,6 @@ a:hover { color: var(--link-hover); border-bottom-color: var(--link-hover); }
 }
 
 @media (max-width: 34rem) {
-  .entry__photos { grid-template-columns: 1fr; max-width: 17rem; }
   .orglist { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.3rem 1rem; }
   .orglist__mark { height: 5.4rem; padding: 0.75rem; }
 }
