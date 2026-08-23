@@ -197,9 +197,12 @@ main { padding-bottom: 5rem; }
   letter-spacing: -0.03em;
 }
 
+/* Upright, not italic. A full sentence in italic is a lot of slant to read,
+   and italic already carries the titles of works elsewhere on the site — the
+   report title on Work & Education, publication names inside the articles —
+   so spending it here blunted that signal. */
 .page-head .dek {
   font-family: var(--serif);
-  font-style: italic;
   font-size: 1.24rem;
   line-height: 1.5;
   color: var(--ink-soft);
