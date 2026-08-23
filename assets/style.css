@@ -629,10 +629,20 @@ a:hover { color: var(--link-hover); border-bottom-color: var(--link-hover); }
 /* Alert samples, grouped into labelled rows. Every screenshot lands at the
    same ~225px whatever the row holds, so a single shot does not balloon and a
    trio does not shrink — the widths below are chosen to make that true. */
+/* Each row is a figure: its screenshots and the line describing them. The
+   label used to sit 11px under its own images and 18px above the next row's,
+   which is nowhere near enough difference to say which it belongs to. Now it
+   is tight to its own and well clear of the next. */
+.samplerow {
+  margin: 0 0 2.6rem;
+  max-width: var(--entry-measure);
+}
+.samplerow:last-of-type { margin-bottom: 1.4rem; }
+
 .samples {
   display: grid;
   gap: 0.85rem;
-  margin: 1.1rem 0 0.5rem;
+  margin: 0;
 }
 .samples--single { grid-template-columns: 1fr;                        max-width: 14rem; }
 .samples--pair   { grid-template-columns: repeat(2, minmax(0, 1fr));  max-width: 29rem; }
@@ -658,7 +668,15 @@ a:hover { color: var(--link-hover); border-bottom-color: var(--link-hover); }
   margin: 0.5rem 0 0;
   max-width: 30rem;
 }
-.samples__note { margin: 0.7rem 0 0.4rem; }
+/* sits against its own screenshots, and reads as description rather than as a
+   footnote — these lines carry the thread through the section */
+.samples__note {
+  margin: 0.55rem 0 0;
+  font-size: 0.88rem;
+  color: var(--ink-soft);
+  max-width: 40rem;
+  text-wrap: pretty;
+}
 
 /* the list sits between two .entry__note paragraphs and is read as part of
    the same passage, so it takes their type exactly — serif, 1.06rem */
