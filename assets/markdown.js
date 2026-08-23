@@ -1,7 +1,7 @@
 /* ---------------------------------------------------------------
    A deliberately small Markdown subset, rendered safely.
 
-   Supported: paragraphs, ## headings, > blockquotes, - and 1. lists,
+   Supported: paragraphs, ## and ### headings, > blockquotes, - and 1. lists,
    --- rules, **bold**, *italic*, `code`, [links](url).
 
    Everything is HTML-escaped BEFORE any formatting is applied, and
@@ -97,6 +97,13 @@ window.renderMarkdown = (function () {
         out.push(figs.length === 2
           ? '<div class="figure--pair">' + figs.join("") + '</div>'
           : figs.join(""));
+        return;
+      }
+
+      /* ### before ## — a journal entry needs a subsection level, not just
+         one flat run of section heads. */
+      if (/^###\s+/.test(b)) {
+        out.push("<h4>" + inline(b.replace(/^###\s+/, "")) + "</h4>");
         return;
       }
 
