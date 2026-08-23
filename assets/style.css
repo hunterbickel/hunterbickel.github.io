@@ -64,7 +64,10 @@
   --track-label: 0.08em;
   --track-tab:   0.12em;
 
-  --measure: 36rem;   /* prose: still ~70 characters, the readable range */
+  /* 36rem measured out at 53 characters a line, under the comfortable
+     60-75 range. The journal was widened to 40rem for exactly this reason
+     and the articles were left behind; both now sit at ~64. */
+  --measure: 40rem;
   --entry-measure: 46rem;  /* the shared right edge inside a Work/Education entry */
   --wide:    64rem;   /* page shell — 52rem left ~40% of a laptop screen empty */
 }
@@ -87,7 +90,10 @@ body {
 /* ---------- layout ---------- */
 
 .wrap      { width: 100%; max-width: var(--wide); margin: 0 auto; padding: 0 1.5rem; }
-.wrap--read{ max-width: var(--measure); }
+/* --measure is the text column itself, so the reading wrapper has to add its
+   own gutters on top or the padding eats into the measure — that is what left
+   articles at 60 characters where the journal ran 64. */
+.wrap--read{ max-width: calc(var(--measure) + 3rem); }
 
 main { padding-bottom: 5rem; }
 
@@ -965,10 +971,7 @@ a:hover { color: var(--link-hover); border-bottom-color: var(--link-hover); }
 /* the date follows the entry down a long scroll */
 .post__rail .post__date { position: sticky; top: 1.5rem; margin: 0.35rem 0 0; }
 .post__main { min-width: 0; max-width: 40rem; }
-/* .prose caps at the 36rem article measure; journal entries sit in their
-   own column and can run a little wider, which lifts ~54 characters a line
-   to ~62 — inside the comfortable range rather than under it. */
-.post__main .post__body.prose { max-width: 40rem; }
+/* articles and journal entries share the measure now; nothing to override */
 .post:last-child { border-bottom: 0; }
 
 .post__date {
