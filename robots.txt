@@ -1,0 +1,14 @@
+# Crawling is allowed on purpose. Every page carries
+#   <meta name="robots" content="noindex, ...">
+# and a crawler has to be able to fetch a page to read that tag.
+#
+# Do NOT add "Disallow: /" here. It would block the fetch, the noindex would
+# never be seen, and a search engine that found the URL somewhere else — a
+# LinkedIn profile, a resume, a shared link — could still list the bare URL
+# with no way to suppress it. Blocking the crawl is weaker than letting it in
+# and telling it to forget what it saw.
+
+User-agent: *
+Allow: /
+
+# No sitemap is published, deliberately.
