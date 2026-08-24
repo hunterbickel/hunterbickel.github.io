@@ -645,6 +645,9 @@ a:hover { color: var(--link-hover); border-bottom-color: var(--link-hover); }
   margin: 0;
 }
 .samples--single { grid-template-columns: 1fr;                        max-width: 14rem; }
+/* the two 4-train shots are cropped to a single alert, so they come out
+   landscape where every other sample is portrait — they need the width */
+.samples--wide   { grid-template-columns: 1fr;                        max-width: 24rem; }
 .samples--pair   { grid-template-columns: repeat(2, minmax(0, 1fr));  max-width: 29rem; }
 .samples--trio   { grid-template-columns: repeat(3, minmax(0, 1fr));  max-width: 44rem; }
 .samples--one { grid-template-columns: 1fr; max-width: 30rem; }
