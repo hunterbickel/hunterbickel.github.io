@@ -637,6 +637,9 @@ a:hover { color: var(--link-hover); border-bottom-color: var(--link-hover); }
   margin: 0 0 2.6rem;
   max-width: var(--entry-measure);
 }
+/* the first row sat flush against the paragraph above it — 0px, where the rows
+   below have 42px between them */
+.entry__note + .samplerow { margin-top: 2.2rem; }
 .samplerow:last-of-type { margin-bottom: 1.4rem; }
 
 .samples {
