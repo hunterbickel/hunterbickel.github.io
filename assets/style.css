@@ -896,6 +896,42 @@ a:hover { color: var(--link-hover); border-bottom-color: var(--link-hover); }
 }
 .citycard__text.todo { border-left-width: 2px; }
 
+/* ---------- what's being written now ---------- */
+
+/* Sits above the tabs rather than inside one, so it speaks for the whole page.
+   Accent rather than the warm tone: --warn is spoken for by the construction
+   banner at the top of every page, and two warm things that close together
+   start competing. */
+.nowline {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.6rem;
+  max-width: var(--entry-measure);
+  margin: 0 0 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--rule-soft);
+}
+.nowline__label {
+  font-family: var(--sans);
+  font-size: var(--fs-tag);
+  font-weight: 700;
+  letter-spacing: var(--track-tag);
+  text-transform: uppercase;
+  color: var(--accent);
+  white-space: nowrap;
+}
+.nowline__title {
+  font-size: 1.02rem;
+  color: var(--ink-soft);
+  text-wrap: pretty;
+}
+
+@media (max-width: 30rem) {
+  .nowline { gap: 0.25rem; }
+  .nowline__label { flex-basis: 100%; }
+}
+
 /* ---------- coming-soon notice ---------- */
 
 /* Blue rather than the amber of the site-wide construction banner: this
