@@ -896,6 +896,253 @@ a:hover { color: var(--link-hover); border-bottom-color: var(--link-hover); }
 }
 .citycard__text.todo { border-left-width: 2px; }
 
+/* ---------- the writing stream ---------- */
+
+/* One pool of pieces on two axes. A series folds into a single collection
+   card while nothing is filtered; applying a filter breaks it open, because
+   topics cross series boundaries — High-Speed Rail has pieces both inside the
+   Europe series and outside it, so an opaque container would hide half the
+   answer. writing.js owns that toggle. */
+
+.stream { max-width: var(--entry-measure); }
+
+/* A class that sets `display` outranks the user-agent `[hidden]` rule, so each
+   of these needs saying explicitly — the same trap .citycard hit. Without it
+   writing.js marks a row hidden and the row carries on rendering. */
+.pc[hidden],
+.coll[hidden],
+.filters[hidden],
+.pc__full[hidden],
+.stream__empty[hidden] { display: none; }
+
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.38rem;
+  margin: 0 0 1.6rem;
+  padding-bottom: 1.1rem;
+  border-bottom: 1px solid var(--rule-soft);
+}
+.filters__lbl {
+  font-family: var(--sans);
+  font-size: var(--fs-tag);
+  font-weight: 700;
+  letter-spacing: var(--track-tag);
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-right: 0.2rem;
+}
+.filters__lbl--2 { margin-left: 0.7rem; }
+.filters__series, .filters__topics { display: contents; }
+
+.chip {
+  font-family: var(--sans);
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--muted);
+  background: transparent;
+  border: 1px solid var(--rule);
+  border-radius: 3px;
+  padding: 0.3rem 0.64rem;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: color 0.15s ease, border-color 0.15s ease, background 0.15s ease;
+}
+.chip:hover { color: var(--ink); border-color: var(--accent); }
+.chip:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
+.chip--on { background: var(--accent); color: var(--navy); border-color: var(--accent); }
+.chip--all { margin-left: auto; }
+
+/* ---- a piece ---- */
+
+.pc {
+  display: flex;
+  gap: 1.2rem;
+  align-items: flex-start;
+  padding: 1.4rem 0;
+  border-bottom: 1px solid var(--rule-soft);
+}
+.pc__body { flex: 1 1 auto; min-width: 0; }
+.pc__shot {
+  flex: 0 0 7rem;
+  width: 7rem;
+  aspect-ratio: 1;
+  border-radius: 5px;
+  background: var(--paper-2) center / cover no-repeat;
+}
+.pc__shot--none {
+  background: linear-gradient(145deg, rgba(124,192,239,0.15), rgba(124,192,239,0.03));
+  border: 1px solid rgba(124,192,239,0.26);
+  display: flex;
+  align-items: flex-end;
+  padding: 0.55rem;
+}
+.pc__shot--none i { display: block; height: 2px; width: 2rem; background: var(--accent); opacity: 0.75; }
+
+.pc__meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.35rem;
+  margin: 0 0 0.35rem;
+  font-family: var(--sans);
+  font-size: 0.76rem;
+  color: var(--muted);
+}
+.pc__meta--b { margin: 0.45rem 0 0; }
+.pc__kind, .coll__kind {
+  font-family: var(--sans);
+  font-size: var(--fs-tag);
+  font-weight: 700;
+  letter-spacing: var(--track-tag);
+  text-transform: uppercase;
+  color: var(--accent);
+  border: 1px solid rgba(124,192,239,0.45);
+  border-radius: 2px;
+  padding: 0.06rem 0.36rem;
+  white-space: nowrap;
+}
+.coll__kind { color: var(--navy); background: var(--accent); border-color: var(--accent); }
+.pc__src {
+  font-family: var(--sans);
+  font-size: var(--fs-tag);
+  font-weight: 700;
+  letter-spacing: var(--track-tag);
+  text-transform: uppercase;
+  color: var(--muted);
+  border: 1px solid var(--rule);
+  border-radius: 3px;
+  padding: 0.06rem 0.38rem;
+  white-space: nowrap;
+}
+/* the part number is the one warm mark here — it says "this belongs to something" */
+.pc__part {
+  font-family: var(--sans);
+  font-size: var(--fs-tag);
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--warn);
+  white-space: nowrap;
+}
+.pc__soon {
+  font-family: var(--sans);
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+  color: var(--navy);
+  background: var(--accent);
+  border-radius: 2px;
+  padding: 0.07rem 0.32rem;
+  white-space: nowrap;
+}
+.pc__len { font-family: var(--mono); font-size: 0.7rem; opacity: 0.68;
+  font-variant-numeric: tabular-nums; }
+.topic {
+  font-family: var(--sans);
+  font-size: 0.66rem;
+  letter-spacing: 0.05em;
+  color: var(--muted);
+  border: 1px solid var(--rule-soft);
+  border-radius: 9px;
+  padding: 0.05rem 0.48rem;
+  white-space: nowrap;
+}
+
+.pc__title {
+  font-size: 1.14rem;
+  line-height: 1.24;
+  letter-spacing: -0.014em;
+  font-weight: 700;
+  margin: 0 0 0.3rem;
+}
+.pc__title a { color: var(--accent); border-bottom: 0; }
+.pc__title a:hover { color: var(--link-hover); }
+.pc__dek {
+  margin: 0;
+  font-family: var(--sans);
+  font-size: 0.9rem;
+  line-height: 1.55;
+  color: var(--ink-soft);
+}
+
+/* a journal entry opens under its own row rather than on a page of its own */
+.pc--open { border-bottom-color: transparent; padding-bottom: 0.6rem; }
+.pc__full {
+  padding: 0 0 2rem;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid var(--rule-soft);
+}
+.pc__full > :first-child { margin-top: 0; }
+
+/* ---- a series, folded ---- */
+
+.coll {
+  display: grid;
+  grid-template-columns: 13rem 1fr;
+  gap: 1.3rem;
+  align-items: start;
+  border: 1px solid rgba(124,192,239,0.32);
+  border-radius: 7px;
+  background: rgba(124,192,239,0.06);
+  padding: 1.2rem;
+  margin: 1.4rem 0;
+}
+.coll__shot {
+  aspect-ratio: 4 / 3;
+  border-radius: 5px;
+  background: var(--paper-2) center / cover no-repeat;
+}
+.coll__title {
+  font-size: 1.42rem;
+  line-height: 1.16;
+  letter-spacing: -0.02em;
+  font-weight: 700;
+  margin: 0 0 0.35rem;
+}
+.coll__list {
+  list-style: none;
+  margin: 0.85rem 0 0;
+  padding: 0;
+  border-top: 1px solid rgba(124,192,239,0.22);
+}
+.coll__list li {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  align-items: baseline;
+  padding: 0.45rem 0;
+  border-bottom: 1px solid rgba(124,192,239,0.13);
+  font-family: var(--sans);
+  font-size: 0.88rem;
+}
+.coll__list li:last-child { border-bottom: 0; }
+.coll__list a { color: var(--ink-soft); border-bottom: 0; }
+.coll__list a:hover { color: var(--accent); }
+.coll__list span {
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+.stream__empty {
+  font-family: var(--sans);
+  font-size: 0.9rem;
+  color: var(--muted);
+  padding: 1.6rem 0;
+}
+
+@media (max-width: 40rem) {
+  .coll { grid-template-columns: 1fr; }
+  .pc { flex-direction: column-reverse; }
+  .pc__shot { width: 100%; flex: none; aspect-ratio: 16 / 9; margin-bottom: 0.2rem; }
+  .filters__lbl--2 { margin-left: 0; }
+  .chip--all { margin-left: 0; }
+}
+
 /* ---------- what's being written now ---------- */
 
 /* Sits above the tabs rather than inside one, so it speaks for the whole page.
