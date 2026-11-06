@@ -49,9 +49,7 @@
 
   function journalRow(entry) {
     var topics = Array.isArray(entry.tags) ? entry.tags : [],
-        img    = firstImage(entry.body),
-        part   = entry.series
-                   ? '<span class="pc__part">Part ' + esc(entry.part) + "</span>" : "";
+        img    = firstImage(entry.body);
 
     var el = document.createElement("article");
     el.className = "pc";
@@ -65,7 +63,7 @@
     el.innerHTML =
       '<div class="pc__body">' +
         '<p class="pc__meta"><span class="pc__kind">' +
-          esc(entry.kind || "Article") + "</span>" + part + "</p>" +
+          esc(entry.kind || "Article") + "</span></p>" +
         '<h3 class="pc__title"><a href="journal.html?id=' + encodeURIComponent(entry.id) + '">' +
           esc(entry.title) + "</a></h3>" +
         '<p class="pc__dek">' + esc(summary(entry.body)) + "</p>" +

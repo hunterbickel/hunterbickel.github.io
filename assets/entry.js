@@ -67,8 +67,7 @@
 
     var bits = '<span class="tag">' + esc(entry.kind || "Article") + "</span>";
     if (entry.series) {
-      bits += '<span class="piece__where">' + esc(entry.series) +
-              (entry.part ? " &middot; Part " + esc(entry.part) : "") + "</span>";
+      bits += '<span class="piece__where">' + esc(entry.series) + "</span>";
     }
     if (entry.date) {
       bits += '<span class="piece__when">' + esc(prettyDate(entry.date)) + "</span>";
