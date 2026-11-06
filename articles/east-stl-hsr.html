@@ -3,6 +3,12 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- GitHub Pages serves HTML with cache-control: max-age=600 and that cannot be
+     changed. Without this, for ten minutes after a push the browser keeps the old
+     page, which still points at the previous ?v= asset URLs it also has cached —
+     so a change looks like it did not deploy. Revalidating is cheap: the server
+     answers 304 when nothing changed. Fingerprinted assets stay fully cached. -->
+<meta http-equiv="Cache-Control" content="no-cache">
 <meta name="robots" content="noindex, nofollow, noarchive, nosnippet, noimageindex, max-snippet:0, max-image-preview:none">
 <title>The Case for a High-Speed Rail Station in East St. Louis &mdash; Hunter Bickel</title>
 <meta name="description" content="HSRA’s proposal for a new rail station east of the Mississippi.">
