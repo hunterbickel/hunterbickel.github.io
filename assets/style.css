@@ -673,7 +673,28 @@ a:hover { color: var(--link-hover); border-bottom-color: var(--link-hover); }
 .samples--pair   { grid-template-columns: repeat(2, minmax(0, 1fr));  max-width: 29rem; }
 .samples--trio   { grid-template-columns: repeat(3, minmax(0, 1fr));  max-width: 44rem; }
 .samples--one { grid-template-columns: 1fr; max-width: 30rem; }
+/* a group that follows a button, rather than body copy, needs its own air */
+.samples--spaced { margin-top: 1.8rem; }
 .samples__item { margin: 0; }
+/* A sample frame waiting on its screenshot. Holds the 344x640 the real shots
+   are, so swapping one in later moves nothing, and borrows the placeholder
+   treatment used for a crest with no logo and a piece with no cover. */
+.samples__item--none {
+  aspect-ratio: 344 / 640;
+  border-radius: 5px;
+  background: linear-gradient(145deg, rgba(124,192,239,0.15), rgba(124,192,239,0.03));
+  border: 1px solid rgba(124,192,239,0.26);
+  display: flex;
+  align-items: flex-end;
+  padding: 0.7rem;
+}
+.samples__item--none i {
+  display: block;
+  height: 2px;
+  width: 2.4rem;
+  background: var(--accent);
+  opacity: 0.75;
+}
 .samples__item img {
   display: block;
   width: 100%;
