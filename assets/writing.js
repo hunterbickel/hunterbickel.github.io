@@ -38,10 +38,6 @@
       { year: "numeric", month: "long", day: "numeric" });
   }
 
-  function wordCount(md) {
-    return md.replace(/!\[[^\]]*\]\([^)]*\)/g, "").trim().split(/\s+/).length;
-  }
-
   function firstImage(md) {
     var m = md.match(/!\[[^\]]*\]\(([^)]+)\)/);
     return m ? m[1] : "";
@@ -52,7 +48,6 @@
   function journalRow(entry) {
     var topics = Array.isArray(entry.tags) ? entry.tags : [],
         img    = firstImage(entry.body),
-        words  = wordCount(entry.body).toLocaleString("en-US"),
         part   = entry.series
                    ? '<span class="pc__part">Part ' + esc(entry.part) + "</span>" : "";
 
@@ -74,7 +69,6 @@
         '<p class="pc__dek">' + esc(summary(entry.body)) + "</p>" +
         '<p class="pc__meta pc__meta--b">' +
           '<span class="pc__date">' + esc(prettyDate(entry.date)) + "</span>" +
-          '<span class="pc__len">' + words + " words</span>" +
           topics.map(function (t) {
             return '<span class="topic">' + esc(t) + "</span>";
           }).join("") +
