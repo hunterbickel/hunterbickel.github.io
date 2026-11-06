@@ -67,7 +67,8 @@
 
     el.innerHTML =
       '<div class="pc__body">' +
-        '<p class="pc__meta"><span class="pc__kind">Journal</span>' + part + "</p>" +
+        '<p class="pc__meta"><span class="pc__kind">' +
+          esc(entry.kind || "Journal") + "</span>" + part + "</p>" +
         '<h3 class="pc__title"><a href="#' + esc(entry.id) + '">' +
           esc(entry.title) + "</a></h3>" +
         '<p class="pc__dek">' + esc(summary(entry.body)) + "</p>" +
