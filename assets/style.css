@@ -914,11 +914,17 @@ a:hover { color: var(--link-hover); border-bottom-color: var(--link-hover); }
 .filters[hidden],
 .stream__empty[hidden] { display: none; }
 
+/* A row per axis, label in its own column. The two groups used to be
+   display:contents inside one wrapping flex row, which meant a topic that
+   ran past the width wrapped to the left margin and sat under the SERIES
+   label — reading as a second series. Giving each axis its own grid row
+   keeps a chip under its own heading no matter how many topics there are. */
 .filters {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 0.38rem;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: baseline;
+  row-gap: 0.5rem;
+  column-gap: 0.6rem;
   margin: 0 0 1.6rem;
   padding-bottom: 1.1rem;
   border-bottom: 1px solid var(--rule-soft);
@@ -930,10 +936,15 @@ a:hover { color: var(--link-hover); border-bottom-color: var(--link-hover); }
   letter-spacing: var(--track-tag);
   text-transform: uppercase;
   color: var(--muted);
-  margin-right: 0.2rem;
+  grid-column: 1;
+  padding-top: 0.3rem;
 }
-.filters__lbl--2 { margin-left: 0.7rem; }
-.filters__series, .filters__topics { display: contents; }
+.filters__series, .filters__topics {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.38rem;
+  grid-column: 2;
+}
 
 .chip {
   font-family: var(--sans);
@@ -951,7 +962,7 @@ a:hover { color: var(--link-hover); border-bottom-color: var(--link-hover); }
 .chip:hover { color: var(--ink); border-color: var(--accent); }
 .chip:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
 .chip--on { background: var(--accent); color: var(--navy); border-color: var(--accent); }
-.chip--all { margin-left: auto; }
+.chip--all { grid-column: 2; justify-self: start; }
 
 /* ---- a piece ---- */
 
@@ -1156,8 +1167,11 @@ a:hover { color: var(--link-hover); border-bottom-color: var(--link-hover); }
   .coll__cap { grid-template-columns: 1fr; }
   .pc { flex-direction: column-reverse; }
   .pc__shot { width: 100%; flex: none; aspect-ratio: 16 / 9; margin-bottom: 0.2rem; }
-  .filters__lbl--2 { margin-left: 0; }
-  .chip--all { margin-left: 0; }
+  /* narrow: the label sits above its own chips rather than beside them */
+  .filters { grid-template-columns: minmax(0, 1fr); }
+  .filters__lbl { grid-column: 1; padding-top: 0.3rem; }
+  .filters__series, .filters__topics { grid-column: 1; }
+  .chip--all { grid-column: 1; }
 }
 
 /* ---------- what's being written now ---------- */
