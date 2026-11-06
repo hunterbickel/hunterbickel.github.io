@@ -114,15 +114,11 @@
   /* ---------- the collection card ---------- */
 
   function collectionCard(name, members) {
-    var topics = [], cover = "";
+    var topics = [];
     members.forEach(function (m) {
       (m.getAttribute("data-topics") || "").split("|").forEach(function (t) {
         if (t && topics.indexOf(t) === -1) topics.push(t);
       });
-      if (!cover) {
-        var shot = m.querySelector(".pc__shot");
-        if (shot && shot.style.backgroundImage) cover = shot.style.backgroundImage;
-      }
     });
     topics.sort();
 
@@ -130,37 +126,80 @@
       return (+a.getAttribute("data-part")) - (+b.getAttribute("data-part"));
     });
 
-    var items = ordered.map(function (m) {
-      var a    = m.querySelector(".pc__title a"),
-          len  = m.querySelector(".pc__len"),
-          soon = m.querySelector(".pc__soon");
-      return '<li><a href="' + a.getAttribute("href") + '">' + a.innerHTML + "</a>" +
-             "<span>" + (len ? len.textContent : "") +
-             (soon ? " · coming soon" : "") + "</span></li>";
-    }).join("");
+    /* A series may name one piece its capstone — the thing the rest fed into.
+       Europe Work Study has the report; a series without one just lists its
+       parts evenly, as this did before. */
+    var cap = null, rest = [];
+    ordered.forEach(function (m) {
+      if (!cap && m.hasAttribute("data-capstone")) cap = m; else rest.push(m);
+    });
+
+    function titleOf(m) { return m.querySelector(".pc__title a"); }
+    function textOf(m, sel) {
+      var n = m.querySelector(sel);
+      return n ? n.textContent : "";
+    }
 
     var el = document.createElement("article");
-    el.className = "coll";
+    el.className = "coll" + (cap ? " coll--capstoned" : "");
     el.setAttribute("data-collection", name);
     el.setAttribute("data-date", ordered[ordered.length - 1].getAttribute("data-date"));
-    el.innerHTML =
-      '<span class="coll__shot"></span>' +
-      '<div class="coll__body">' +
+
+    var head =
+      '<div class="coll__head">' +
         '<p class="pc__meta"><span class="coll__kind">Series</span>' +
           '<span class="pc__date">' + ordered.length + " parts</span></p>" +
         '<h3 class="coll__title">' + esc(name) + "</h3>" +
         '<p class="pc__dek">Two weeks across France and Spain &mdash; seven cities, ' +
           "six agencies, and the 265-page report it became.</p>" +
-        '<ol class="coll__list">' + items + "</ol>" +
-        '<p class="pc__meta pc__meta--b">' +
-          topics.map(function (t) {
-            return '<span class="topic">' + esc(t) + "</span>";
-          }).join("") +
-        "</p>" +
       "</div>";
+
+    var capBlock = "";
+    if (cap) {
+      var ca = titleOf(cap);
+      capBlock =
+        '<div class="coll__cap">' +
+          '<span class="coll__cap-shot"></span>' +
+          '<div class="coll__cap-body">' +
+            '<p class="pc__meta">' +
+              '<span class="pc__kind">' + esc(textOf(cap, ".pc__kind")) + "</span>" +
+              '<span class="pc__src">' + esc(textOf(cap, ".pc__src")) + "</span>" +
+              '<span class="pc__date">' + esc(textOf(cap, ".pc__date")) + "</span>" +
+            "</p>" +
+            '<h4 class="coll__cap-title"><a href="' + ca.getAttribute("href") + '">' +
+              ca.innerHTML + "</a></h4>" +
+            '<p class="pc__dek">' + esc(textOf(cap, ".pc__dek")) + "</p>" +
+          "</div>" +
+        "</div>";
+    }
+
+    var items = rest.map(function (m) {
+      var a = titleOf(m);
+      return '<li><a href="' + a.getAttribute("href") + '">' + a.innerHTML + "</a>" +
+             "<span>" + esc(textOf(m, ".pc__kind")) + "</span></li>";
+    }).join("");
+
+    var list = items
+      ? (cap ? '<p class="coll__sublabel">The work behind it</p>' : "") +
+        '<ol class="coll__list">' + items + "</ol>"
+      : "";
+
+    el.innerHTML = head + capBlock + list +
+      '<p class="pc__meta pc__meta--b">' +
+        topics.map(function (t) {
+          return '<span class="topic">' + esc(t) + "</span>";
+        }).join("") +
+      "</p>";
+
     /* set as a property: getComputedStyle hands back url("…") and those quotes
        would terminate the style attribute early if interpolated into HTML */
-    if (cover) el.querySelector(".coll__shot").style.backgroundImage = cover;
+    if (cap) {
+      var shot = cap.querySelector(".pc__shot");
+      if (shot && shot.style.backgroundImage) {
+        el.querySelector(".coll__cap-shot").style.backgroundImage =
+          shot.style.backgroundImage;
+      }
+    }
     return el;
   }
 

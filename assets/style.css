@@ -1079,22 +1079,19 @@ a:hover { color: var(--link-hover); border-bottom-color: var(--link-hover); }
 
 /* ---- a series, folded ---- */
 
+/* A series names one piece its capstone — for Europe Work Study, the report
+   the other three fed into. That piece gets the card's picture and its own
+   block; the rest become a short list beneath, named as what they are rather
+   than measured in words. A series with no capstone falls back to an even
+   list, which is what this was before. */
 .coll {
-  display: grid;
-  grid-template-columns: 13rem 1fr;
-  gap: 1.3rem;
-  align-items: start;
   border: 1px solid rgba(124,192,239,0.32);
   border-radius: 7px;
   background: rgba(124,192,239,0.06);
-  padding: 1.2rem;
+  padding: 1.3rem 1.4rem 1.2rem;
   margin: 1.4rem 0;
 }
-.coll__shot {
-  aspect-ratio: 4 / 3;
-  border-radius: 5px;
-  background: var(--paper-2) center / cover no-repeat;
-}
+.coll__head { margin-bottom: 1.1rem; }
 .coll__title {
   font-size: 1.42rem;
   line-height: 1.16;
@@ -1102,9 +1099,45 @@ a:hover { color: var(--link-hover); border-bottom-color: var(--link-hover); }
   font-weight: 700;
   margin: 0 0 0.35rem;
 }
+
+/* the capstone */
+.coll__cap {
+  display: grid;
+  grid-template-columns: 11rem 1fr;
+  gap: 1.2rem;
+  align-items: center;
+  padding: 1.1rem;
+  border: 1px solid rgba(124,192,239,0.26);
+  border-radius: 5px;
+  background: rgba(124,192,239,0.07);
+}
+.coll__cap-shot {
+  aspect-ratio: 4 / 3;
+  border-radius: 4px;
+  background: var(--paper-2) center / cover no-repeat;
+}
+.coll__cap-title {
+  font-size: 1.16rem;
+  line-height: 1.22;
+  letter-spacing: -0.015em;
+  font-weight: 700;
+  margin: 0 0 0.3rem;
+}
+.coll__cap-title a { color: var(--accent); border-bottom: 0; }
+.coll__cap-title a:hover { color: var(--link-hover); }
+
+.coll__sublabel {
+  font-family: var(--sans);
+  font-size: var(--fs-tag);
+  font-weight: 700;
+  letter-spacing: var(--track-tag);
+  text-transform: uppercase;
+  color: var(--muted);
+  margin: 1.2rem 0 0.4rem;
+}
 .coll__list {
   list-style: none;
-  margin: 0.85rem 0 0;
+  margin: 0;
   padding: 0;
   border-top: 1px solid rgba(124,192,239,0.22);
 }
@@ -1122,8 +1155,11 @@ a:hover { color: var(--link-hover); border-bottom-color: var(--link-hover); }
 .coll__list a { color: var(--ink-soft); border-bottom: 0; }
 .coll__list a:hover { color: var(--accent); }
 .coll__list span {
-  font-family: var(--mono);
-  font-size: 0.68rem;
+  font-family: var(--sans);
+  font-size: var(--fs-tag);
+  font-weight: 700;
+  letter-spacing: var(--track-tag);
+  text-transform: uppercase;
   color: var(--muted);
   white-space: nowrap;
 }
@@ -1136,7 +1172,7 @@ a:hover { color: var(--link-hover); border-bottom-color: var(--link-hover); }
 }
 
 @media (max-width: 40rem) {
-  .coll { grid-template-columns: 1fr; }
+  .coll__cap { grid-template-columns: 1fr; }
   .pc { flex-direction: column-reverse; }
   .pc__shot { width: 100%; flex: none; aspect-ratio: 16 / 9; margin-bottom: 0.2rem; }
   .filters__lbl--2 { margin-left: 0; }
