@@ -912,7 +912,6 @@ a:hover { color: var(--link-hover); border-bottom-color: var(--link-hover); }
 .pc[hidden],
 .coll[hidden],
 .filters[hidden],
-.pc__full[hidden],
 .stream__empty[hidden] { display: none; }
 
 .filters {
@@ -1068,14 +1067,6 @@ a:hover { color: var(--link-hover); border-bottom-color: var(--link-hover); }
   color: var(--ink-soft);
 }
 
-/* a journal entry opens under its own row rather than on a page of its own */
-.pc--open { border-bottom-color: transparent; padding-bottom: 0.6rem; }
-.pc__full {
-  padding: 0 0 2rem;
-  margin-bottom: 1rem;
-  border-bottom: 1px solid var(--rule-soft);
-}
-.pc__full > :first-child { margin-top: 0; }
 
 /* ---- a series, folded ---- */
 

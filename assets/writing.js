@@ -12,9 +12,11 @@
    the matching parts stand on their own beside the loose pieces.
 
    Articles ship as static HTML so the page still lists them with
-   JavaScript off. Journal entries are fetched and inserted here,
-   and open in place rather than on a page of their own, which keeps
-   data/journal.json the single source admin.html already writes to.
+   JavaScript off. The rest are fetched from data/journal.json and
+   inserted here, each linking to journal.html?id=<id> — one template
+   page that renders any entry, so data/journal.json stays the single
+   source admin.html already writes to and a newly published piece has
+   a working page the moment that file lands.
    --------------------------------------------------------------- */
 (function () {
   "use strict";
@@ -64,7 +66,7 @@
       '<div class="pc__body">' +
         '<p class="pc__meta"><span class="pc__kind">' +
           esc(entry.kind || "Article") + "</span>" + part + "</p>" +
-        '<h3 class="pc__title"><a href="#' + esc(entry.id) + '">' +
+        '<h3 class="pc__title"><a href="journal.html?id=' + encodeURIComponent(entry.id) + '">' +
           esc(entry.title) + "</a></h3>" +
         '<p class="pc__dek">' + esc(summary(entry.body)) + "</p>" +
         '<p class="pc__meta pc__meta--b">' +
@@ -78,21 +80,7 @@
         ? '<span class="pc__shot" style="background-image:url(' + esc(img) + ')"></span>'
         : '<span class="pc__shot pc__shot--none"><i></i></span>');
 
-    /* the full entry opens underneath the row it belongs to */
-    var open = document.createElement("div");
-    open.className = "pc__full prose";
-    open.hidden = true;
-    open.id = entry.id;
-
-    el.querySelector(".pc__title a").addEventListener("click", function (ev) {
-      ev.preventDefault();
-      if (!open.innerHTML) open.innerHTML = window.renderMarkdown(entry.body || "");
-      open.hidden = !open.hidden;
-      el.classList.toggle("pc--open", !open.hidden);
-      if (!open.hidden) el.scrollIntoView({ block: "nearest" });
-    });
-
-    return [el, open];
+    return el;
   }
 
   function summary(md) {
@@ -251,24 +239,12 @@
       if (!any && el.getAttribute("data-series")) ok = false;
       el.hidden = !ok;
       if (ok) shown++;
-      if (!ok) {
-        var full = el.nextElementSibling;
-        if (full && full.classList.contains("pc__full")) {
-          full.hidden = true;
-          el.classList.remove("pc--open");
-        }
-      }
     });
 
     stream.querySelectorAll("[data-collection]").forEach(function (el) {
       var visible = !any;
       el.hidden = !visible;
       if (visible) shown++;
-    });
-
-    stream.querySelectorAll(".pc__full").forEach(function (f) {
-      var row = f.previousElementSibling;
-      if (row && row.hidden) f.hidden = true;
     });
 
     filterBar.querySelectorAll(".chip").forEach(function (c) {
@@ -293,14 +269,7 @@
       return (b.getAttribute("data-date") || "").localeCompare(
               a.getAttribute("data-date") || "");
     });
-    nodes.forEach(function (n) {
-      stream.appendChild(n);
-      var full = n.nextElementSibling;
-      if (n.classList.contains("pc")) {
-        var own = document.getElementById(n.getAttribute("data-id"));
-        if (own && own.classList.contains("pc__full")) stream.appendChild(own);
-      }
-    });
+    nodes.forEach(function (n) { stream.appendChild(n); });
     if (emptyNote) stream.appendChild(emptyNote);
   }
 
@@ -309,9 +278,7 @@
     .then(function (data) {
       var entries = Array.isArray(data) ? data : (data.entries || []);
       entries.filter(function (e) { return !e.draft; }).forEach(function (e) {
-        var pair = journalRow(e);
-        stream.appendChild(pair[0]);
-        stream.appendChild(pair[1]);
+        stream.appendChild(journalRow(e));
       });
     })
     .catch(function () { /* articles still list without the journal */ })
@@ -337,17 +304,5 @@
       buildFilters(seriesNames, topicNames);
       apply();
 
-      /* a permalink to an entry opens it */
-      if (location.hash.length > 1) {
-        var target = document.getElementById(location.hash.slice(1));
-        if (target && target.classList.contains("pc__full")) {
-          var row = target.previousElementSibling;
-          if (row) {
-            state = { series: null, topic: row.getAttribute("data-series") ? null : null };
-            row.hidden = false;
-            row.querySelector(".pc__title a").click();
-          }
-        }
-      }
     });
 })();

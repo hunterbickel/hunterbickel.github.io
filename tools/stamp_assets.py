@@ -11,14 +11,14 @@ import hashlib, re, io, glob, os
 
 ASSETS = ['assets/style.css','assets/site.js','assets/markdown.js',
           'assets/contact.js','assets/admin.js','assets/config.js',
-          'assets/tabs.js','assets/cities.js','assets/writing.js']
+          'assets/tabs.js','assets/cities.js','assets/writing.js','assets/entry.js']
 
 digest = {}
 for a in ASSETS:
     if os.path.exists(a):
         digest[os.path.basename(a)] = hashlib.sha256(open(a,'rb').read()).hexdigest()[:8]
 
-pages = ['index.html','work.html','writing.html','admin.html'] + sorted(glob.glob('articles/*.html'))
+pages = ['index.html','work.html','writing.html','journal.html','admin.html'] + sorted(glob.glob('articles/*.html'))
 changed = 0
 for p in pages:
     s = io.open(p, encoding='utf-8').read()
