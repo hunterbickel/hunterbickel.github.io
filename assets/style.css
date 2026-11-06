@@ -479,6 +479,25 @@ a:hover { color: var(--link-hover); border-bottom-color: var(--link-hover); }
   object-fit: cover;
   display: block;
 }
+
+/* No logo on file yet. Same frame as a real crest so the titles stay in one
+   column, but deliberately not a blank white tile — that reads as an image
+   that failed. Borrows the placeholder treatment already used for a piece
+   with no cover image on Research & Writing. */
+.entry__crest[data-kind="none"] {
+  background: linear-gradient(145deg, rgba(124,192,239,0.15), rgba(124,192,239,0.03));
+  border: 1px solid rgba(124,192,239,0.26);
+  align-items: flex-end;
+  justify-content: flex-start;
+  padding: 0.7rem;
+}
+.entry__crest[data-kind="none"] i {
+  display: block;
+  height: 2px;
+  width: 2.4rem;
+  background: var(--accent);
+  opacity: 0.75;
+}
 .entry__head .entry__mid { min-width: 0; }
 .entry__head .entry__role { font-size: 1.9rem; line-height: 1.14; margin: 0; }
 
