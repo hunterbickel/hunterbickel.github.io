@@ -594,6 +594,20 @@ a:hover { color: var(--link-hover); border-bottom-color: var(--link-hover); }
 .entry__sub em { font-style: italic; }
 .entry__note + .entry__note { margin-top: 0.85rem; }
 
+/* A line that introduces the list right under it, so the gap between the two
+   closes up rather than reading as a paragraph break. */
+.entry__note--leadin { margin-bottom: 0.5rem; }
+
+/* Figures stacked under a lead-in, not prose. No bullets: two short lines
+   whose whole content is the number, so a marker only adds noise. */
+.entry ul.statlist {
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+}
+.entry ul.statlist li { margin-bottom: 0.2rem; }
+.entry ul.statlist li:last-child { margin-bottom: 0; }
+
 /* The opening line of a Work entry summarises the role. It sits between
    the header and the sub-sections, so it is set apart from body copy
    without competing with the title above it. */
