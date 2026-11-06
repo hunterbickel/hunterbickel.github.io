@@ -175,10 +175,15 @@
     /* set as a property: getComputedStyle hands back url("…") and those quotes
        would terminate the style attribute early if interpolated into HTML */
     if (cap) {
-      var shot = cap.querySelector(".pc__shot");
-      if (shot && shot.style.backgroundImage) {
-        el.querySelector(".coll__cap-shot").style.backgroundImage =
-          shot.style.backgroundImage;
+      var shot = cap.querySelector(".pc__shot"),
+          capShot = el.querySelector(".coll__cap-shot");
+      if (shot && capShot && shot.style.backgroundImage) {
+        capShot.style.backgroundImage = shot.style.backgroundImage;
+        /* a logo is contained on white rather than cropped to fill — the
+           capstone tile has to be told, since it only inherits the image */
+        if (shot.classList.contains("pc__shot--logo")) {
+          capShot.classList.add("coll__cap-shot--logo");
+        }
       }
     }
     return el;

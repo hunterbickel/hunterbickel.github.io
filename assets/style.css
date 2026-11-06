@@ -1007,6 +1007,23 @@ a:hover { color: var(--link-hover); border-bottom-color: var(--link-hover); }
   align-items: flex-end;
   padding: 0.55rem;
 }
+/* A logo in a shot tile, not a photograph. Same reasoning as the education
+   crests: cover would crop a wordmark, and a cropped wordmark is a broken
+   one. Contained on white instead, so it survives both the square row tile
+   and the 4:3 capstone tile in the collection card.
+
+   Doubled class on purpose. .coll__cap-shot sets `background` as a shorthand
+   and is declared further down this file, so at equal specificity it would
+   win on source order and put cover back. */
+.pc__shot.pc__shot--logo,
+.coll__cap-shot.coll__cap-shot--logo {
+  background-color: #fff;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  border: 1px solid var(--rule);
+}
+.pc__shot.pc__shot--logo { padding: 0; }
 .pc__shot--none i { display: block; height: 2px; width: 2rem; background: var(--accent); opacity: 0.75; }
 
 .pc__meta {
