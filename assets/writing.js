@@ -150,7 +150,7 @@
           '<span class="pc__date">' + ordered.length + " parts</span></p>" +
         '<h3 class="coll__title">' + esc(name) + "</h3>" +
         '<p class="pc__dek">Two weeks across France and Spain &mdash; seven cities, ' +
-          "six agencies, and the 250-page report it became.</p>" +
+          "six agencies, and the 265-page report it became.</p>" +
         '<ol class="coll__list">' + items + "</ol>" +
         '<p class="pc__meta pc__meta--b">' +
           topics.map(function (t) {
