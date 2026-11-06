@@ -150,8 +150,8 @@
         '<p class="pc__meta"><span class="coll__kind">Series</span>' +
           '<span class="pc__date">' + ordered.length + " parts</span></p>" +
         '<h3 class="coll__title">' + esc(name) + "</h3>" +
-        '<p class="pc__dek">Two weeks across France and Spain &mdash; seven cities, ' +
-          "six agencies, and the 265-page report it became.</p>" +
+        '<p class="pc__dek">My writings recapping my summer 2025 study trip in ' +
+          "France and Spain.</p>" +
       "</div>";
 
     var capBlock = "";
