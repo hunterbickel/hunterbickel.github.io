@@ -1,26 +1,24 @@
-# Pointing hunterbickel.net at this site
+# Pointing htbwork.net at this site
 
-Checked 2026-11-06: `hunterbickel.net` was unregistered (NXDOMAIN, no
-nameservers). Re-check before you count on it — that can change any day.
+Checked 2026-11-06: `htbwork.net` was unregistered (NXDOMAIN, no
+nameservers). So were `htbwork.com`, `htbwork.org` and the original
+`htb.work`. Re-check before you count on it — that can change any day.
 
 Plan: buy it when the site fully launches, once work has signed off and it
 goes on the resume.
 
-## A note on the name, since it changed
+## A note on the name
 
-An earlier draft of this used `htb.work`, chosen so the URL carried no name.
-`hunterbickel.net` is the opposite choice and that is a reasonable trade for a
-resume link — it is the conventional, professional form, and it is the one a
-reader expects to see under your name.
+`htbwork.net` carries no name, which is the point. Someone who knows who you
+are cannot reach the site by guessing — they need the link. That is the whole
+benefit a custom domain buys here, and a name domain would have given it away.
 
-Be clear-eyed about what it gives up. `htb.work` was unguessable; anyone who
-knew your name could not reach the site without the link. `hunterbickel.net`
-is the first thing a person would try. The noindex still keeps you out of
-search results, which is the main protection and is unaffected — but the
-domain itself is now a guess away. If that trade is fine, and for a resume
-extension it usually is, nothing else here changes.
+It does not replace the noindex. The two do different jobs: noindex keeps you
+out of search results, the nameless domain keeps the URL itself from being a
+guess. Keep both.
 
-This makes WHOIS privacy matter more, not less. See below.
+WHOIS privacy still matters just as much — see below. A nameless domain is
+pointless if the registration record publishes your name and address.
 
 ## 1. Buy it — and turn on WHOIS privacy
 
@@ -34,7 +32,7 @@ Check the **renewal** price, not just the first year.
 
 ## 2. DNS records at the registrar
 
-`hunterbickel.net` is an apex domain, so it needs A records — a CNAME will not
+`htbwork.net` is an apex domain, so it needs A records — a CNAME will not
 work at the apex.
 
     Type   Name   Value
@@ -65,13 +63,13 @@ Do **not** add the CNAME file before DNS resolves. GitHub will start
 redirecting the live site to a domain that does not answer yet, and the site
 goes dark until it does.
 
-Once `dig +short hunterbickel.net` returns those addresses:
+Once `dig +short htbwork.net` returns those addresses:
 
-    echo "hunterbickel.net" > CNAME
-    git add CNAME && git commit -m "Serve from hunterbickel.net" && git push
+    echo "htbwork.net" > CNAME
+    git add CNAME && git commit -m "Serve from htbwork.net" && git push
 
 Then in the repo's **Settings → Pages**, set the custom domain to
-`hunterbickel.net` and tick **Enforce HTTPS** once the certificate is issued.
+`htbwork.net` and tick **Enforce HTTPS** once the certificate is issued.
 The certificate is automatic and usually takes a few minutes, occasionally up
 to an hour.
 
